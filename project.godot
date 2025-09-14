@@ -11,5 +11,11 @@ config_version=5
 [application]
 
 config/name="gd-template"
+run/main_scene="uid://b7fev26x5xs8a"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="uid://bl6tabb0boy77"
+
+[autoload]
+
+AppConfig="*res://scenes/autoloads/app_config.tscn"
+SceneLoader="*res://scenes/autoloads/scene_loader.tscn"
