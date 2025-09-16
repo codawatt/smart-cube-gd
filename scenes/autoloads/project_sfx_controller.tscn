@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dakgekfjyj3ok"]
+
+[ext_resource type="Script" uid="uid://cte0723q41b1r" path="res://scenes/autoloads/project_sfx_controller.gd" id="1_sev6d"]
+
+[node name="ProjectSFXController" type="Node"]
+script = ExtResource("1_sev6d")

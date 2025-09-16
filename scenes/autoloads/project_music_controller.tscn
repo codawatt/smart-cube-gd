@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://lhm5avsoloun"]
+
+[ext_resource type="Script" uid="uid://bhcb3ya1n2ycy" path="res://scenes/autoloads/project_music_controller.gd" id="1_0yum4"]
+
+[node name="ProjectMusicController" type="Node"]
+script = ExtResource("1_0yum4")

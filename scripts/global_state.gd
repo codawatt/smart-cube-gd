@@ -1,12 +1,14 @@
 class_name GlobalState
 extends Node
 
+#region Properties
 const SAVE_STATE_PATH = "user://global_state.tres"
 const NO_VERSION_NAME = "0.0.0"
 
 static var current : GlobalStateData
 static var current_version : String
-
+#endregion
+#region Implementation
 static func _log_opened() -> void:
 	if current is GlobalStateData:
 		current.last_unix_time_opened = int(Time.get_unix_time_from_system())
@@ -26,16 +28,18 @@ static func _load_current_state() -> void:
 	if not current:
 		current = GlobalStateData.new()
 
+static func save() -> void:
+	if current is GlobalStateData:
+		ResourceSaver.save(current, SAVE_STATE_PATH)
+#endregion
+#region Top-Level
 static func open() -> void:
 	_load_current_state()
 	_log_opened()
 	_log_version()
 	save()
-
-static func save() -> void:
-	if current is GlobalStateData:
-		ResourceSaver.save(current, SAVE_STATE_PATH)
-
+#endregion
+#region Helpers
 static func has_state(state_key : String) -> bool:
 	if current is not GlobalStateData: return false
 	return current.has_state(state_key)
@@ -48,3 +52,4 @@ static func reset() -> void:
 	if current is not GlobalStateData: return
 	current.states.clear()
 	save()
+#endregion

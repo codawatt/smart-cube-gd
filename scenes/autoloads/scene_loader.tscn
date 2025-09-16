@@ -4,3 +4,4 @@
 
 [node name="SceneLoader" type="Node"]
 script = ExtResource("1_p5687")
+loading_screen_path = "uid://cllwf1ppx8k8x"

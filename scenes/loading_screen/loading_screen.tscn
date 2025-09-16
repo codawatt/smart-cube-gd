@@ -1,0 +1,94 @@
+[gd_scene load_steps=2 format=3 uid="uid://cllwf1ppx8k8x"]
+
+[ext_resource type="Script" uid="uid://dbmr2x5jlj48s" path="res://scenes/loading_screen/loading_screen.gd" id="1_8cml4"]
+
+[node name="LoadingScreen" type="CanvasLayer"]
+process_mode = 3
+layer = 20
+script = ExtResource("1_8cml4")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackPanel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundColor" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 33.0
+offset_top = -103.0
+offset_right = -33.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 30
+
+[node name="ProgressLabel" type="Label" parent="Control/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Loading..."
+horizontal_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="Control/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+max_value = 1.0
+
+[node name="ErrorMessage" type="AcceptDialog" parent="Control"]
+unique_name_in_owner = true
+oversampling_override = 1.0
+title = "Loading Error"
+initial_position = 2
+size = Vector2i(360, 100)
+
+[node name="StalledMessage" type="ConfirmationDialog" parent="Control"]
+unique_name_in_owner = true
+oversampling_override = 1.0
+title = "Loading Stalled"
+initial_position = 2
+size = Vector2i(360, 100)
+ok_button_text = "Try Waiting"
+cancel_button_text = "Reload"
+
+[node name="LoadingTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+autostart = true
+
+[connection signal="confirmed" from="Control/ErrorMessage" to="." method="_on_error_message_confirmed"]
+[connection signal="canceled" from="Control/StalledMessage" to="." method="_on_confirmation_dialog_canceled"]
+[connection signal="confirmed" from="Control/StalledMessage" to="." method="_on_confirmation_dialog_confirmed"]
+[connection signal="timeout" from="LoadingTimer" to="." method="_on_loading_timer_timeout"]

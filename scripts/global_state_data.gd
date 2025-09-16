@@ -1,11 +1,13 @@
 class_name GlobalStateData
 extends Resource
 
+#region Properties
 @export var first_version_opened : String
 @export var last_version_opened : String
 @export var last_unix_time_opened : int
 @export var states : Dictionary
-
+#endregion
+#region Implementation
 func get_or_create_state(key_name : String, state_type_path : String) -> Resource:
 	var new_state : Resource
 	var new_state_script = load(state_type_path)
@@ -22,3 +24,4 @@ func get_or_create_state(key_name : String, state_type_path : String) -> Resourc
 
 func has_state(key_name : String) -> bool:
 	return key_name in states
+#endregion

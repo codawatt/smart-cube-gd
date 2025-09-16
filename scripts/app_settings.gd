@@ -1,7 +1,8 @@
 class_name AppSettings
 extends Node
-
+#region Properties
 const INPUT_SECTION = &'InputSettings'
+const INPUT_GUI_SECTION = &'InputGuiSettings' #TODO
 const AUDIO_SECTION = &'AudioSettings'
 const VIDEO_SECTION = &'VideoSettings'
 const GAME_SECTION = &'GameSettings'
@@ -15,10 +16,10 @@ const MUTE_SETTING = &'Mute'
 const MASTER_BUS_INDEX = 0
 const SYSTEM_BUS_NAME_PREFIX = "_"
 
-#region Input
 static var default_action_events : Dictionary
 static var initial_bus_volumes : Array
-
+#endregion
+#region Input
 static func get_config_input_events(action_name : String, default = null) -> Array:
 	return PlayerConfig.get_config(INPUT_SECTION, action_name, default)
 
@@ -81,6 +82,7 @@ static func set_inputs_from_config() -> void:
 		set_input_from_config(action_name)
 #endregion
 #region Audio
+
 static func get_bus_volume(bus_index : int) -> float:
 	var initial_linear = 1.0
 	if initial_bus_volumes.size() > bus_index:
@@ -174,7 +176,7 @@ static func set_video_from_config(window : Window) -> void:
 		set_resolution(current_resolution, window)
 	_set_v_sync_from_config(window)
 #endregion
-
+#region Top-level
 static func set_from_config() -> void:
 	set_default_inputs()
 	set_inputs_from_config()
@@ -183,3 +185,4 @@ static func set_from_config() -> void:
 static func set_from_config_and_window(window : Window) -> void:
 	set_from_config()
 	set_video_from_config(window)
+#endregion
