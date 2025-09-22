@@ -6,17 +6,15 @@ const ALREADY_ASSIGNED_TEXT : String = "{key} already assigned to {action}."
 const ONE_INPUT_MINIMUM_TEXT : String = "%s must have at least one key or button assigned."
 const KEY_DELETION_TEXT : String = "Are you sure you want to remove {key} from {action}?"
 
-@export_enum("List", "Tree") var remapping_mode : int = 0 :
+@export_enum("List") var remapping_mode : int = 0 :
 	set(value):
 		remapping_mode = value
 		if is_inside_tree():
 			match(remapping_mode):
 				0:
 					%InputActionList.show()
-					%InputActionTree.hide()
-				1:
-					%InputActionList.hide()
-					%InputActionTree.show()
+
+
 
 @onready var assignment_placeholder_text = $KeyAssignmentDialog.dialog_text
 
@@ -40,19 +38,9 @@ func _add_action_event() -> void:
 	match(remapping_mode):
 		0:
 			%InputActionList.add_action_event(last_input_readable_name, last_input_event)
-		1:
-			%InputActionTree.add_action_event(last_input_readable_name, last_input_event)
-
-func _remove_action_event(item : TreeItem) -> void:
-	%InputActionTree.remove_action_event(item)
 
 func _on_reset_button_pressed() -> void:
 	$ResetConfirmationDialog.popup_centered()
-
-func _on_key_deletion_dialog_confirmed() -> void:
-	var editing_item = %InputActionTree.editing_item
-	if is_instance_valid(editing_item):
-		_remove_action_event(editing_item)
 
 func _on_key_assignment_dialog_confirmed() -> void:
 	_add_action_event()
@@ -98,5 +86,3 @@ func _on_reset_confirmation_dialog_confirmed() -> void:
 	match(remapping_mode):
 		0:
 			%InputActionList.reset()
-		1:
-			%InputActionTree.reset()

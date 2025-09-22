@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0t83ldrcpmne"]
+[gd_scene load_steps=3 format=3 uid="uid://c0t83ldrcpmne"]
 
 [ext_resource type="Script" uid="uid://bh1f2tiwptw7s" path="res://scenes/autoloads/project_ui_sound_controller.gd" id="1_7y1f6"]
+[ext_resource type="AudioStream" uid="uid://ctv8kf4lc6t8k" path="res://assets/sfx/UI_Noisy_Impact_09.wav" id="2_py6cm"]
 
 [node name="ProjectUISoundController" type="Node"]
 script = ExtResource("1_7y1f6")
+button_pressed = ExtResource("2_py6cm")
