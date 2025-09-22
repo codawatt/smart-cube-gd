@@ -1,0 +1,192 @@
+[gd_scene load_steps=8 format=3 uid="uid://cxi5vx0dchfit"]
+
+[ext_resource type="Script" uid="uid://diuwicamhg8vu" path="res://scenes/options/master_options_menu.gd" id="1_yl1lj"]
+[ext_resource type="Script" uid="uid://c84pdkpleuy1d" path="res://scenes/options/Controls/input_options_menu.gd" id="2_gxku7"]
+[ext_resource type="Script" uid="uid://bryrwd5fwo16x" path="res://scripts/capture_focus.gd" id="3_27gja"]
+[ext_resource type="Script" uid="uid://dedixoi03qwo1" path="res://scenes/options/Controls/input_action_list.gd" id="4_6cg1m"]
+[ext_resource type="Script" uid="uid://dk1wvsta08b8j" path="res://scenes/options/Controls/key_assignment_dialog.gd" id="4_bdm3m"]
+[ext_resource type="Script" uid="uid://c0cjbppd3lxrx" path="res://scenes/options/Controls/input_action_tree.gd" id="5_v6crv"]
+[ext_resource type="Script" uid="uid://byxt34d7372d2" path="res://scenes/options/Controls/input_icon_mapper.gd" id="6_6cg1m"]
+
+[node name="MasterOptionsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yl1lj")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+tab_alignment = 1
+current_tab = 0
+
+[node name="Controls" type="MarginContainer" parent="TabContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 8
+script = ExtResource("2_gxku7")
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Controls"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("3_27gja")
+search_depth = 5
+
+[node name="InputMappingContainer" type="VBoxContainer" parent="TabContainer/Controls/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Controls/VBoxContainer/InputMappingContainer"]
+layout_mode = 2
+text = "Actions & Inputs"
+horizontal_alignment = 1
+
+[node name="InputActionList" type="ScrollContainer" parent="TabContainer/Controls/VBoxContainer/InputMappingContainer" node_paths=PackedStringArray("input_icon_mapper")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(560, 480)
+layout_mode = 2
+follow_focus = true
+script = ExtResource("4_6cg1m")
+action_group_names = Array[String](["Primary", "Secondary", "Tertiary", "Quanternary", "Quinary"])
+input_action_names = Array[StringName]([&"move_forward", &"move_backward", &"move_up", &"move_down", &"move_left", &"move_right", &"interact"])
+readable_action_names = Array[String](["Move Forward", "Move Backward", "Move Up", "Move Down", "Move Left", "Move Right", "Interact"])
+input_icon_mapper = NodePath("../../../InputIconMapper")
+action_name_map = {
+"interact": "Interact",
+"move_backward": "Move Backward"
+}
+
+[node name="ParentBoxContainer" type="BoxContainer" parent="TabContainer/Controls/VBoxContainer/InputMappingContainer/InputActionList"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+vertical = true
+
+[node name="ActionBoxContainer" type="BoxContainer" parent="TabContainer/Controls/VBoxContainer/InputMappingContainer/InputActionList/ParentBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="ActionNameLabel" type="Label" parent="TabContainer/Controls/VBoxContainer/InputMappingContainer/InputActionList/ParentBoxContainer/ActionBoxContainer"]
+layout_mode = 2
+
+[node name="InputActionTree" type="Tree" parent="TabContainer/Controls/VBoxContainer/InputMappingContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+script = ExtResource("5_v6crv")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Controls/VBoxContainer/InputMappingContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ResetButton" type="Button" parent="TabContainer/Controls/VBoxContainer/InputMappingContainer/HBoxContainer"]
+layout_mode = 2
+text = "Reset"
+
+[node name="KeyAssignmentDialog" type="ConfirmationDialog" parent="TabContainer/Controls"]
+oversampling_override = 1.0
+size = Vector2i(486, 100)
+script = ExtResource("4_bdm3m")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Controls/KeyAssignmentDialog"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InputLabel" type="Label" parent="TabContainer/Controls/KeyAssignmentDialog/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "None"
+horizontal_alignment = 1
+
+[node name="InputTextEdit" type="TextEdit" parent="TabContainer/Controls/KeyAssignmentDialog/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+placeholder_text = "Focus here to assign inputs."
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+middle_mouse_paste_enabled = false
+
+[node name="DelayTimer" type="Timer" parent="TabContainer/Controls/KeyAssignmentDialog"]
+unique_name_in_owner = true
+wait_time = 0.1
+one_shot = true
+
+[node name="KeyDeletionDialog" type="ConfirmationDialog" parent="TabContainer/Controls"]
+oversampling_override = 1.0
+size = Vector2i(486, 100)
+dialog_text = "Are you sure you want to remove KEY from ACTION?"
+
+[node name="OneInputMinimumDialog" type="AcceptDialog" parent="TabContainer/Controls"]
+oversampling_override = 1.0
+title = "Cannot Remove"
+size = Vector2i(486, 100)
+
+[node name="AlreadyAssignedDialog" type="AcceptDialog" parent="TabContainer/Controls"]
+oversampling_override = 1.0
+title = "Already Assigned"
+size = Vector2i(486, 100)
+
+[node name="ResetConfirmationDialog" type="ConfirmationDialog" parent="TabContainer/Controls"]
+oversampling_override = 1.0
+size = Vector2i(588, 100)
+dialog_text = "Are you sure you want to reset controls back to the defaults?"
+
+[node name="InputIconMapper" type="Node" parent="TabContainer/Controls"]
+script = ExtResource("6_6cg1m")
+
+[node name="Inputs" type="MarginContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Audio" type="MarginContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="Video" type="MarginContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="Game" type="MarginContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 4
+
+[connection signal="already_assigned" from="TabContainer/Controls/VBoxContainer/InputMappingContainer/InputActionList" to="TabContainer/Controls" method="_on_input_actions_list_already_assigned"]
+[connection signal="button_clicked" from="TabContainer/Controls/VBoxContainer/InputMappingContainer/InputActionList" to="TabContainer/Controls" method="_on_input_actions_list_button_clicked"]
+[connection signal="minimum_reached" from="TabContainer/Controls/VBoxContainer/InputMappingContainer/InputActionList" to="TabContainer/Controls" method="_on_input_actions_list_minimum_reached"]
+[connection signal="pressed" from="TabContainer/Controls/VBoxContainer/InputMappingContainer/HBoxContainer/ResetButton" to="TabContainer/Controls" method="_on_reset_button_pressed"]
+[connection signal="confirmed" from="TabContainer/Controls/KeyAssignmentDialog" to="TabContainer/Controls" method="_on_key_assignment_dialog_confirmed"]
+[connection signal="visibility_changed" from="TabContainer/Controls/KeyAssignmentDialog" to="TabContainer/Controls/KeyAssignmentDialog" method="_on_visibility_changed"]
+[connection signal="focus_entered" from="TabContainer/Controls/KeyAssignmentDialog/VBoxContainer/InputTextEdit" to="TabContainer/Controls/KeyAssignmentDialog" method="_on_text_edit_focus_entered"]
+[connection signal="focus_exited" from="TabContainer/Controls/KeyAssignmentDialog/VBoxContainer/InputTextEdit" to="TabContainer/Controls/KeyAssignmentDialog" method="_on_input_text_edit_focus_exited"]
+[connection signal="gui_input" from="TabContainer/Controls/KeyAssignmentDialog/VBoxContainer/InputTextEdit" to="TabContainer/Controls/KeyAssignmentDialog" method="_on_input_text_edit_gui_input"]
+[connection signal="confirmed" from="TabContainer/Controls/KeyDeletionDialog" to="TabContainer/Controls" method="_on_key_deletion_dialog_confirmed"]
+[connection signal="confirmed" from="TabContainer/Controls/ResetConfirmationDialog" to="TabContainer/Controls" method="_on_reset_confirmation_dialog_confirmed"]

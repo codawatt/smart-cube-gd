@@ -11,8 +11,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_l1wh1")
-next_scene = "uid://hmefiurbfvep"
+next_scene = "uid://ce2loafdjavqa"
 images = Array[Texture2D]([ExtResource("2_ke3tw")])
+
+[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+autoplay = true
+bus = &"Music"
 
 [node name="ImageContainer" type="MarginContainer" parent="."]
 unique_name_in_owner = true

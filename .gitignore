@@ -3,7 +3,8 @@
 /android/
 [Aa]ssets/
 scenes/debug_sandbox/*
-
+resources/themes/example.tres
+credits/ATTRIBUTION.md
 
 **.tmp
 **.temp

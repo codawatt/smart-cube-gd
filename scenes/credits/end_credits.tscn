@@ -1,0 +1,121 @@
+[gd_scene load_steps=5 format=3 uid="uid://dnr7xvawatedw"]
+
+[ext_resource type="Script" uid="uid://cwowgylukm0ln" path="res://scenes/credits/end_credits.gd" id="1_5mu7s"]
+[ext_resource type="Script" uid="uid://fdpme612p85d" path="res://scenes/credits/credits_label.gd" id="2_p15bj"]
+[ext_resource type="Script" uid="uid://ckxfm4vlj1wrx" path="res://scenes/credits/auto_scroll_container.gd" id="2_wrswf"]
+[ext_resource type="Script" uid="uid://bryrwd5fwo16x" path="res://scripts/capture_focus.gd" id="4_3hok3"]
+
+[node name="EndCredits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5mu7s")
+
+[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+autoplay = true
+bus = &"Music"
+
+[node name="BackgroundTextureRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scroll_vertical = 4
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+script = ExtResource("2_wrswf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HeaderSpace" type="Control" parent="ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 720)
+layout_mode = 2
+
+[node name="CreditsLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1280, 0)
+layout_mode = 2
+size_flags_vertical = 5
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+script = ExtResource("2_p15bj")
+attribution_file_path = "res://scenes/credits/ATTRIBUTION.md"
+h1_font_size = 64
+h2_font_size = 48
+h3_font_size = 32
+h4_font_size = 24
+h5_font_size = 20
+h6_font_size = 16
+max_image_width = 80
+
+[node name="FooterSpace" type="Control" parent="ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 720)
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="EndMessagePanel" type="Panel" parent="CenterContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(360, 120)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/EndMessagePanel"]
+layout_mode = 0
+offset_right = 360.0
+offset_bottom = 120.0
+
+[node name="ThankPlayer" type="Label" parent="CenterContainer/EndMessagePanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Thanks for playing!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/EndMessagePanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/EndMessagePanel/VBoxContainer/CenterContainer"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+script = ExtResource("4_3hok3")
+
+[node name="ExitButton" type="Button" parent="CenterContainer/EndMessagePanel/VBoxContainer/CenterContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="MenuButton" type="Button" parent="CenterContainer/EndMessagePanel/VBoxContainer/CenterContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[connection signal="end_reached" from="ScrollContainer" to="." method="_on_scroll_container_end_reached"]
+[connection signal="pressed" from="CenterContainer/EndMessagePanel/VBoxContainer/CenterContainer/HBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]
+[connection signal="pressed" from="CenterContainer/EndMessagePanel/VBoxContainer/CenterContainer/HBoxContainer/MenuButton" to="." method="_on_MenuButton_pressed"]
