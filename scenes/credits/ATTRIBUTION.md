@@ -1,12 +1,15 @@
 # Attribution
 ## Collaborators
 
+### Chief Executive Officer
+[Roșca Dragoș-Florin](https://x.com/codawatt)  
+
 ### Role
 Person 1
 Person 2  
-[Person w/ Link]()  
+[Person w/ Link](https://x.com/codawatt)  
 
-## Sourced
+## Sourced - Assets
 ### Asset Type
 #### Use Case
 Author: [Name]()  

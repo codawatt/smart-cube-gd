@@ -60,11 +60,13 @@ func exit_game() -> void:
 		get_tree().quit()
 
 func _hide_menu() -> void:
+	flow_control_container.show()
 	back_button.show()
 	menu_container.hide()
 
 func _show_menu() -> void:
 	back_button.hide()
+	flow_control_container.hide()
 	menu_container.show()
 
 func _open_sub_menu(menu : Control) -> void:
@@ -72,7 +74,7 @@ func _open_sub_menu(menu : Control) -> void:
 	sub_menu.show()
 	_hide_menu()
 	sub_menu_opened.emit()
-	animation_state_machine.travel("OpenSubMenu")
+	#animation_state_machine.travel("OpenSubMenu")
 
 func _close_sub_menu() -> void:
 	if sub_menu == null:
@@ -81,7 +83,7 @@ func _close_sub_menu() -> void:
 	sub_menu = null
 	_show_menu()
 	sub_menu_closed.emit()
-	animation_state_machine.travel("OpenMainMenu")
+	#animation_state_machine.travel("OpenMainMenu")
 
 func _event_is_mouse_button_released(event : InputEvent) -> bool:
 	return event is InputEventMouseButton and not event.is_pressed()
@@ -127,7 +129,7 @@ func _add_or_hide_credits() -> void:
 		credits_container.call_deferred("add_child", credits_scene)
 
 func _ready() -> void:
-	flow_control_container.show()
+	#flow_control_container.show()
 	_hide_exit_for_web()
 	_add_or_hide_options()
 	_add_or_hide_credits()
@@ -157,7 +159,8 @@ func _on_back_button_pressed() -> void:
 
 #abandon all hope the who enters below
 func intro_done() -> void:
-	animation_state_machine.travel("OpenMainMenu")
+	#animation_state_machine.travel("OpenMainMenu")
+	pass
 func _is_in_intro() -> bool:
 	return animation_state_machine.get_current_node() == "Intro"
 func _event_skips_intro(event : InputEvent) -> bool:
