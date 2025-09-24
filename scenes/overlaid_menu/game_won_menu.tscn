@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ccar650omge8a"]
 
 [ext_resource type="PackedScene" uid="uid://60aou7jmbnns" path="res://scenes/overlaid_menu/overlaid_menu.tscn" id="1_f14iw"]
-[ext_resource type="Script" uid="uid://d2kmltu7f2dik" path="res://game_won_menu.gd" id="2_vbav3"]
+[ext_resource type="Script" uid="uid://d2kmltu7f2dik" path="res://scenes/overlaid_menu/game_won_menu.gd" id="2_vbav3"]
 
 [node name="GameWonMenu" instance=ExtResource("1_f14iw")]
 script = ExtResource("2_vbav3")

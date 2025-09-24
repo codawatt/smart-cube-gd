@@ -1,3 +1,4 @@
+@tool
 class_name LevelWonMenu
 extends OverlaidMenu
 

@@ -5,6 +5,7 @@ extends Container
 const EMPTY_INPUT_ACTION_STRING = " "
 
 signal already_assigned(action_name : String, input_name : String)
+@warning_ignore("unused_signal")
 signal minimum_reached(action_name : String)
 signal button_clicked(action_name : String, readable_input_name : String)
 
@@ -200,6 +201,7 @@ func _add_action_options(action_name : String, readable_action_name : String, in
 		var icon : Texture
 		if input_icon_mapper:
 			icon = input_icon_mapper.get_icon(input_event)
+		@warning_ignore("incompatible_ternary")
 		var content = icon if icon else text
 		var button : Button = _add_new_button(content, new_action_box, is_disabled)
 		_connect_button_and_add_to_maps(button, text, action_name, group_iter)
@@ -207,6 +209,7 @@ func _add_action_options(action_name : String, readable_action_name : String, in
 
 func _get_all_action_names(include_built_in : bool = false) -> Array[StringName]:
 	var action_names : Array[StringName] = input_action_names.duplicate()
+	@warning_ignore("unused_variable")
 	var full_action_name_map = action_name_map.duplicate()
 	if include_built_in:
 		for action_name in built_in_action_name_map:

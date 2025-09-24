@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://1ubkiehrce86"]
+[gd_scene load_steps=4 format=3 uid="uid://1ubkiehrce86"]
 
 [ext_resource type="PackedScene" uid="uid://60aou7jmbnns" path="res://scenes/overlaid_menu/overlaid_menu.tscn" id="1_3735s"]
 [ext_resource type="Script" uid="uid://ddrxhsq4dhtyn" path="res://scenes/overlaid_menu/pause_menu.gd" id="2_dibwf"]
+[ext_resource type="PackedScene" uid="uid://tlp6vokbt10u" path="res://scenes/overlaid_menu/mini_overlaid_menu_container.tscn" id="3_e0jxu"]
 
 [node name="PauseMenu" instance=ExtResource("1_3735s")]
+process_mode = 3
 script = ExtResource("2_dibwf")
-options_packed_scene = null
+options_packed_scene = ExtResource("3_e0jxu")
 main_menu_scene = "uid://ce2loafdjavqa"
 pauses_game = true
 

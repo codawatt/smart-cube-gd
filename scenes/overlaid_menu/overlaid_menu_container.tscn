@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://d06ga0v8i8tv5"]
+
+[ext_resource type="PackedScene" uid="uid://60aou7jmbnns" path="res://scenes/overlaid_menu/overlaid_menu.tscn" id="1_dpw7q"]
+[ext_resource type="Script" uid="uid://ccxdnm0ftwr22" path="res://scenes/overlaid_menu/overlaid_menu_container.gd" id="2_bnk7p"]
+
+[node name="OverlaidMenuContainer" instance=ExtResource("1_dpw7q")]
+script = ExtResource("2_bnk7p")
+menu_scene = null
+
+[node name="MenuPanelContainer" parent="." index="1"]
+offset_left = -216.0
+offset_top = -199.0
+offset_right = 216.0
+offset_bottom = 198.0
+
+[node name="TitleLabel" parent="MenuPanelContainer/MarginContainer/BoxContainer/TitleMargin" index="0"]
+text = "Options"
+
+[node name="MenuContainer" type="MarginContainer" parent="MenuPanelContainer/MarginContainer/BoxContainer" index="2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CloseButton" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="0"]
+text = "Back"

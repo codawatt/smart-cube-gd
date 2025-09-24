@@ -118,6 +118,7 @@ anim_player = NodePath("../MenuAnimationPlayer")
 [node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="."]
 
 [node name="BackgroundTextureRect" type="TextureRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -126,6 +127,15 @@ grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 1
 stretch_mode = 5
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.11958339, 0.092974834, 0.33756402, 1)
 
 [node name="VersionMargin" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -136,7 +146,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VersionContainer" type="Control" parent="VersionMargin"]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 mouse_filter = 2
 
@@ -151,7 +160,7 @@ offset_left = -45.0
 offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "v0.2.0"
+text = "v0.4.0"
 horizontal_alignment = 2
 script = ExtResource("3_247la")
 
@@ -170,7 +179,6 @@ layout_mode = 2
 theme_override_constants/margin_top = 24
 
 [node name="TitleContainer" type="Control" parent="MenuContainer/TitleMargin"]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 mouse_filter = 2
 
@@ -191,7 +199,6 @@ layout_mode = 2
 theme_override_constants/margin_top = 92
 
 [node name="SubTitleContainer" type="Control" parent="MenuContainer/SubTitleMargin"]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 mouse_filter = 2
 
@@ -212,7 +219,6 @@ theme_override_constants/margin_top = 136
 theme_override_constants/margin_bottom = 8
 
 [node name="MenuButtonsContainer" type="Control" parent="MenuContainer/MenuButtonsMargin"]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 mouse_filter = 2
 

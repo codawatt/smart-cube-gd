@@ -1,13 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://qdh828m3mwpa"]
+[gd_scene load_steps=3 format=3 uid="uid://b3rxrtqwq7dwb"]
 
-[ext_resource type="PackedScene" uid="uid://60aou7jmbnns" path="res://scenes/overlaid_menu/overlaid_menu.tscn" id="1_okwks"]
-[ext_resource type="Script" uid="uid://b6ae56mtv4wqi" path="res://scenes/overlaid_menu/level_won_menu.gd" id="2_isgtt"]
+[ext_resource type="PackedScene" uid="uid://60aou7jmbnns" path="res://scenes/overlaid_menu/overlaid_menu.tscn" id="1_vmdhw"]
+[ext_resource type="Script" uid="uid://dgdscsa53yaw6" path="res://scenes/overlaid_menu/level_lost_menu.gd" id="2_uqn7o"]
 
-[node name="LevelWonMenu" instance=ExtResource("1_okwks")]
-script = ExtResource("2_isgtt")
+[node name="LevelLostMenu" instance=ExtResource("1_vmdhw")]
+script = ExtResource("2_uqn7o")
 
 [node name="MenuPanelContainer" parent="." index="1"]
-custom_minimum_size = Vector2(432, 240)
+offset_left = -134.0
+offset_top = -103.0
+offset_right = 298.0
+offset_bottom = 137.0
 
 [node name="TitleMargin" parent="MenuPanelContainer/MarginContainer/BoxContainer" index="0"]
 visible = false
@@ -19,8 +22,7 @@ theme_override_constants/margin_bottom = 64
 
 [node name="DescriptionLabel" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin" index="0"]
 bbcode_enabled = true
-text = "[center]Level complete![/center]"
-scroll_active = false
+text = "[center]You lost...[/center]"
 
 [node name="MenuButtons" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin" index="0"]
 vertical = false
@@ -30,18 +32,9 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Main Menu"
 
-[node name="RestartButton" type="Button" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="1"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Restart"
-
-[node name="CloseButton" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="2"]
-text = "Continue"
-
 [node name="ConfirmMainMenu" type="ConfirmationDialog" parent="." index="2"]
 initial_position = 2
 dialog_text = "Go back to main menu?"
 
 [connection signal="pressed" from="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
-[connection signal="pressed" from="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="confirmed" from="ConfirmMainMenu" to="." method="_on_confirm_main_menu_confirmed"]

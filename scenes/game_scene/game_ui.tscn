@@ -7,8 +7,8 @@
 [ext_resource type="Script" uid="uid://c54hscgx85rnt" path="res://scripts/scene_lister.gd" id="3_ejf1p"]
 [ext_resource type="Script" uid="uid://bnaj18x8cdwmm" path="res://scripts/level_manager.gd" id="3_v20na"]
 [ext_resource type="PackedScene" uid="uid://ccar650omge8a" path="res://scenes/overlaid_menu/game_won_menu.tscn" id="5_onvsj"]
-[ext_resource type="PackedScene" uid="uid://60aou7jmbnns" path="res://scenes/overlaid_menu/overlaid_menu.tscn" id="5_vbgr5"]
 [ext_resource type="PackedScene" uid="uid://qdh828m3mwpa" path="res://scenes/overlaid_menu/level_won_menu.tscn" id="6_bqcs8"]
+[ext_resource type="PackedScene" uid="uid://b3rxrtqwq7dwb" path="res://scenes/overlaid_menu/level_lost_menu.tscn" id="6_onvsj"]
 [ext_resource type="Script" uid="uid://pr6vr8yd15ha" path="res://scenes/game_scene/configurable_sub_viewport.gd" id="6_y85d6"]
 
 [node name="GameUI" type="Control"]
@@ -42,7 +42,7 @@ scene_lister = NodePath("SceneLister")
 main_menu_scene = "uid://ce2loafdjavqa"
 ending_scene = "uid://dnr7xvawatedw"
 game_won_scene = ExtResource("5_onvsj")
-level_lost_scene = ExtResource("5_vbgr5")
+level_lost_scene = ExtResource("6_onvsj")
 level_won_scene = ExtResource("6_bqcs8")
 
 [node name="SceneLister" type="Node" parent="LevelManager"]

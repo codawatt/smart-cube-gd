@@ -24,6 +24,7 @@ const COMMON_REPLACE_STRINGS: Dictionary = {
 @export var add_stick_directions : bool = false
 @export var intial_joypad_device : String = InputEventHelper.DEVICE_GENERIC
 ## Attempt to match the icon names to the input names based on the string rules.
+@warning_ignore("unused_private_class_variable")
 @export var _match_icons_to_inputs_action : bool = false :
 	set(value):
 		if value and Engine.is_editor_hint():

@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://tlp6vokbt10u"]
+
+[ext_resource type="PackedScene" uid="uid://d06ga0v8i8tv5" path="res://scenes/overlaid_menu/overlaid_menu_container.tscn" id="1_l8ypk"]
+[ext_resource type="PackedScene" uid="uid://cetlipa3fy73n" path="res://scenes/options/mini_options_menu.tscn" id="2_wfybq"]
+
+[node name="MiniOverlaidMenuContainer" instance=ExtResource("1_l8ypk")]
+menu_scene = ExtResource("2_wfybq")

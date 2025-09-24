@@ -4,6 +4,7 @@ class_name FileLister
 ## Helper class for listing all the scenes in a directory.
 
 ## List of paths to scene files.
+@warning_ignore("unused_private_class_variable")
 @export var _refresh_files_action : bool = false :
 	set(value):
 		if value and Engine.is_editor_hint():
