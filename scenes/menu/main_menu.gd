@@ -60,11 +60,14 @@ func exit_game() -> void:
 		get_tree().quit()
 
 func _hide_menu() -> void:
+	print("hide menu")
 	flow_control_container.show()
 	back_button.show()
 	menu_container.hide()
 
 func _show_menu() -> void:
+	print("show menu")
+	
 	back_button.hide()
 	flow_control_container.hide()
 	menu_container.show()
@@ -74,7 +77,9 @@ func _open_sub_menu(menu : Control) -> void:
 	sub_menu.show()
 	_hide_menu()
 	sub_menu_opened.emit()
-	#animation_state_machine.travel("OpenSubMenu")
+	print("open submenu")
+	
+	animation_state_machine.travel("OpenSubMenu")
 
 func _close_sub_menu() -> void:
 	if sub_menu == null:
@@ -83,7 +88,9 @@ func _close_sub_menu() -> void:
 	sub_menu = null
 	_show_menu()
 	sub_menu_closed.emit()
-	#animation_state_machine.travel("OpenMainMenu")
+	print("open main menu")
+	
+	animation_state_machine.travel("OpenMainMenu")
 
 func _event_is_mouse_button_released(event : InputEvent) -> bool:
 	return event is InputEventMouseButton and not event.is_pressed()
@@ -129,14 +136,16 @@ func _add_or_hide_credits() -> void:
 		credits_container.call_deferred("add_child", credits_scene)
 
 func _ready() -> void:
-	#flow_control_container.show()
+	print("in ready")
+	
+	animation_state_machine = $MenuAnimationTree.get("parameters/playback")
+	flow_control_container.show()
 	_hide_exit_for_web()
 	_add_or_hide_options()
 	_add_or_hide_credits()
 	_hide_new_game_if_unset()
 	_add_level_select_if_set()
 	_show_continue_if_set()
-	animation_state_machine = $MenuAnimationTree.get("parameters/playback")
 
 func _on_new_game_button_pressed() -> void:
 	new_game()
@@ -159,11 +168,12 @@ func _on_back_button_pressed() -> void:
 
 #abandon all hope the who enters below
 func intro_done() -> void:
-	#animation_state_machine.travel("OpenMainMenu")
-	pass
+	animation_state_machine.travel("OpenMainMenu")
 func _is_in_intro() -> bool:
 	return animation_state_machine.get_current_node() == "Intro"
+	
 func _event_skips_intro(event : InputEvent) -> bool:
+	print("skipped")
 	return event.is_action_released("ui_accept") or \
 		event.is_action_released("ui_select") or \
 		event.is_action_released("ui_cancel") or \

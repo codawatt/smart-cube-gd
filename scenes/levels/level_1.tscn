@@ -14,13 +14,13 @@ next_level_path = "uid://d0k1mbjrjtwmi"
 [node name="Icon" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(328, 242)
-rotation = 4764.828
+rotation = 4821.032
 texture = ExtResource("2_c0txg")
 script = ExtResource("3_eqqov")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 position = Vector2(449, 202)
-scale = Vector2(0.8625262, 0.8625262)
+scale = Vector2(0.9311571, 0.9311571)
 polygon = PackedVector2Array(50, 0, 16.18034, 11.755705, 15.4508505, 47.552826, -6.18034, 19.021132, -40.45085, 29.389263, -20, 2.4492127e-15, -40.45085, -29.389263, -6.18034, -19.021132, 15.4508505, -47.552826, 16.18034, -11.755705)
 script = ExtResource("4_eqqov")
 
