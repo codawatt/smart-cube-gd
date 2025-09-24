@@ -3,7 +3,7 @@ extends HBoxContainer
 signal reset_confirmed
 
 func _on_ResetButton_pressed() -> void:
-	$ConfirmResetDialog.popup_centered()
+	$ConfirmationResetDialog.popup_centered()
 	$ResetButton.disabled = true
 
 func _on_ConfirmResetDialog_confirmed() -> void:

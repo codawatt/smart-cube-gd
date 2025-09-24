@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ce2loafdjavqa"]
+[gd_scene load_steps=13 format=3 uid="uid://ce2loafdjavqa"]
 
 [ext_resource type="Script" uid="uid://bsjgq0qek3b4r" path="res://scenes/menu/main_menu.gd" id="1_nl8w3"]
 [ext_resource type="PackedScene" uid="uid://dnr7xvawatedw" path="res://scenes/credits/end_credits.tscn" id="2_hj162"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cub0v5vrih113" path="res://scenes/menu/config_version_label.gd" id="3_247la"]
 [ext_resource type="Script" uid="uid://cpfkjhy5nlb4a" path="res://scenes/menu/config_name_label.gd" id="3_hj162"]
 [ext_resource type="Script" uid="uid://bryrwd5fwo16x" path="res://scripts/capture_focus.gd" id="3_kiqgm"]
+[ext_resource type="PackedScene" uid="uid://cs8pd51ughlix" path="res://scenes/level_select/level_select_menu.tscn" id="4_isoef"]
 
 [sub_resource type="Animation" id="Animation_hj162"]
 resource_name = "Intro"
@@ -100,9 +101,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nl8w3")
-game_scene_path = "uid://hmefiurbfvep"
+game_scene_path = "uid://m0t8xxxansxp"
 options_packed_scene = ExtResource("2_xn6kt")
 credits_packed_scene = ExtResource("2_hj162")
+level_select_packed_scene = ExtResource("4_isoef")
 
 [node name="MenuAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -312,11 +314,12 @@ theme_override_constants/margin_bottom = 32
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 2
+anchor_top = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_top = -50.0
+offset_right = 71.0
+grow_vertical = 0
 mouse_filter = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16

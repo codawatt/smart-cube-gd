@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0k1mbjrjtwmi"]
+
+[ext_resource type="Script" uid="uid://uxhwr6qpilo8" path="res://scenes/levels/level.gd" id="1_qpwj6"]
+[ext_resource type="Texture2D" uid="uid://msnwrfvy2fkv" path="res://icon.svg" id="2_ibugp"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_qpwj6")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(408, 269)
+scale = Vector2(0.875, 3.234375)
+texture = ExtResource("2_ibugp")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 522.0
+offset_top = 260.0
+offset_right = 584.0
+offset_bottom = 307.0
+text = "Win"
+
+[connection signal="pressed" from="Button" to="." method="_on_win_button_pressed"]

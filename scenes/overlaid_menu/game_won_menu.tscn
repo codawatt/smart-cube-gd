@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccar650omge8a"]
+
+[ext_resource type="PackedScene" uid="uid://60aou7jmbnns" path="res://scenes/overlaid_menu/overlaid_menu.tscn" id="1_f14iw"]
+[ext_resource type="Script" uid="uid://d2kmltu7f2dik" path="res://game_won_menu.gd" id="2_vbav3"]
+
+[node name="GameWonMenu" instance=ExtResource("1_f14iw")]
+script = ExtResource("2_vbav3")
+
+[node name="MenuPanelContainer" parent="." index="1"]
+custom_minimum_size = Vector2(432, 240)
+
+[node name="TitleMargin" parent="MenuPanelContainer/MarginContainer/BoxContainer" index="0"]
+visible = false
+
+[node name="DescriptionMargin" parent="MenuPanelContainer/MarginContainer/BoxContainer" index="1"]
+visible = true
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="DescriptionLabel" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin" index="0"]
+bbcode_enabled = true
+text = "[center]You Won[/center]"
+
+[node name="CloseButton" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="0"]
+text = "Continue"
