@@ -11,6 +11,9 @@ options_packed_scene = ExtResource("3_e0jxu")
 main_menu_scene = "uid://ce2loafdjavqa"
 pauses_game = true
 
+[node name="MenuButtons" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin" index="0"]
+home_end_enabled = true
+
 [node name="CloseButton" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="0"]
 text = "Resume"
 
@@ -30,6 +33,7 @@ text = "Main Menu"
 
 [node name="ExitButton" type="Button" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="4"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 text = "Exit Game"
 

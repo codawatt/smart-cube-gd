@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dtxt502bqvmbi"]
+[gd_scene load_steps=8 format=3 uid="uid://dtxt502bqvmbi"]
 
 [ext_resource type="Script" uid="uid://uxhwr6qpilo8" path="res://scenes/levels/level.gd" id="1_sk5k4"]
 [ext_resource type="Texture2D" uid="uid://msnwrfvy2fkv" path="res://icon.svg" id="2_c0txg"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://db73spsm1k7gx" path="res://scenes/debug_sandbox/polygon_2d.gd" id="4_eqqov"]
 [ext_resource type="Script" uid="uid://bi810w6m2bveq" path="res://scenes/debug_sandbox/label.gd" id="5_po5pe"]
 [ext_resource type="Script" uid="uid://bw2yorkj31gyt" path="res://scenes/debug_sandbox/prototype.gd" id="6_cr6sr"]
+[ext_resource type="Script" uid="uid://cr57n354jmtqm" path="res://scenes/debug_sandbox/selftest.gd" id="7_oc4kc"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_sk5k4")
@@ -14,13 +15,13 @@ next_level_path = "uid://d0k1mbjrjtwmi"
 [node name="Icon" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(328, 242)
-rotation = 4821.032
+rotation = 5572.761
 texture = ExtResource("2_c0txg")
 script = ExtResource("3_eqqov")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 position = Vector2(449, 202)
-scale = Vector2(0.9311571, 0.9311571)
+scale = Vector2(1.1185805, 1.1185805)
 polygon = PackedVector2Array(50, 0, 16.18034, 11.755705, 15.4508505, 47.552826, -6.18034, 19.021132, -40.45085, 29.389263, -20, 2.4492127e-15, -40.45085, -29.389263, -6.18034, -19.021132, 15.4508505, -47.552826, 16.18034, -11.755705)
 script = ExtResource("4_eqqov")
 
@@ -49,5 +50,10 @@ offset_top = 304.0
 offset_right = 542.0
 offset_bottom = 366.0
 text = "Win"
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("7_oc4kc")
 
 [connection signal="pressed" from="Button" to="." method="_on_win_button_pressed"]

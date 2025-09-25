@@ -32,9 +32,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 tab_alignment = 1
-current_tab = 0
+current_tab = 3
 
 [node name="Controls" type="MarginContainer" parent="TabContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 8
@@ -267,13 +268,13 @@ default_value = false
 
 [node name="OptionLabel" type="Label" parent="TabContainer/Audio/VBoxContainer/MuteControl"]
 layout_mode = 2
+size_flags_horizontal = 3
 text = "Mute :"
 
-[node name="CheckButton" type="CheckButton" parent="TabContainer/Audio/VBoxContainer/MuteControl"]
+[node name="CheckButton" type="CheckBox" parent="TabContainer/Audio/VBoxContainer/MuteControl"]
 layout_mode = 2
 
 [node name="Video" type="MarginContainer" parent="TabContainer"]
-visible = false
 layout_mode = 2
 script = ExtResource("10_m55y4")
 metadata/_tab_index = 3
@@ -292,6 +293,7 @@ option_name = "Fullscreen"
 option_section = 3
 key = "Fullscreen"
 section = "VideoSettings"
+default_value = true
 
 [node name="Game" type="MarginContainer" parent="TabContainer"]
 visible = false

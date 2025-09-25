@@ -155,6 +155,8 @@ func _load_level_won_screen_or_next_level() -> void:
 
 func _on_level_won():
 	if is_on_last_level():
+		var bmp = $"../BackgroundMusicPlayer"
+		bmp.stop()
 		_load_win_screen_or_ending()
 	else:
 		_load_level_won_screen_or_next_level()

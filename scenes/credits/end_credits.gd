@@ -9,9 +9,11 @@ extends Credits
 @onready var header_space : Control = %HeaderSpace
 @onready var footer_space : Control = %FooterSpace
 @onready var credits_label : Control = %CreditsLabel
+@onready var background_music_player : AudioStreamPlayer = $BackgroundMusicPlayer
 
 func _on_scroll_container_end_reached() -> void:
 	%EndMessagePanel.show()
+	background_music_player.stop()
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	if force_mouse_mode_visible:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -30,6 +32,7 @@ func _on_ExitButton_pressed() -> void:
 
 func _on_visibility_changed() -> void:
 	if visible:
+		background_music_player.play()
 		%EndMessagePanel.hide()
 		mouse_filter = init_mouse_filter
 
@@ -39,6 +42,8 @@ func _on_resized() -> void:
 
 func _ready() -> void:
 	visibility_changed.connect(_on_visibility_changed)
+	if visible:
+		background_music_player.play()
 	if main_menu_scene.is_empty():
 		%MenuButton.hide()
 	if OS.has_feature("web"):

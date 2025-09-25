@@ -35,6 +35,7 @@ var animation_state_machine : AnimationNodeStateMachinePlayback
 @onready var continue_game_button = %ContinueGameButton
 @onready var level_select_button = %LevelSelectButton
 @onready var level_select_container = %LevelSelectContainer
+@onready var background_music_player = $BackgroundMusicPlayer
 
 func load_game_scene() -> void:
 	GameState.start_game() 
@@ -60,14 +61,11 @@ func exit_game() -> void:
 		get_tree().quit()
 
 func _hide_menu() -> void:
-	print("hide menu")
 	flow_control_container.show()
 	back_button.show()
 	menu_container.hide()
 
 func _show_menu() -> void:
-	print("show menu")
-	
 	back_button.hide()
 	flow_control_container.hide()
 	menu_container.show()
@@ -77,8 +75,6 @@ func _open_sub_menu(menu : Control) -> void:
 	sub_menu.show()
 	_hide_menu()
 	sub_menu_opened.emit()
-	print("open submenu")
-	
 	animation_state_machine.travel("OpenSubMenu")
 
 func _close_sub_menu() -> void:
@@ -88,8 +84,6 @@ func _close_sub_menu() -> void:
 	sub_menu = null
 	_show_menu()
 	sub_menu_closed.emit()
-	print("open main menu")
-	
 	animation_state_machine.travel("OpenMainMenu")
 
 func _event_is_mouse_button_released(event : InputEvent) -> bool:
@@ -102,8 +96,8 @@ func _input(event : InputEvent) -> void:
 	if event.is_action_released("ui_cancel"):
 		if sub_menu:
 			_close_sub_menu()
-		else:
-			exit_game()
+		#else:
+			#exit_game()
 	if event.is_action_released("ui_accept") and get_viewport().gui_get_focus_owner() == null:
 		menu_buttons_box_container.focus_first()
 
@@ -136,8 +130,6 @@ func _add_or_hide_credits() -> void:
 		credits_container.call_deferred("add_child", credits_scene)
 
 func _ready() -> void:
-	print("in ready")
-	
 	animation_state_machine = $MenuAnimationTree.get("parameters/playback")
 	flow_control_container.show()
 	_hide_exit_for_web()
@@ -154,6 +146,7 @@ func _on_options_button_pressed() -> void:
 	_open_sub_menu(options_scene)
 
 func _on_credits_button_pressed() -> void:
+	background_music_player.stop()
 	_open_sub_menu(credits_scene)
 
 func _on_exit_button_pressed() -> void:
@@ -162,8 +155,12 @@ func _on_exit_button_pressed() -> void:
 func _on_credits_end_reached() -> void:
 	if sub_menu == credits_scene:
 		_close_sub_menu()
+		background_music_player.play()
 
 func _on_back_button_pressed() -> void:
+	if sub_menu == credits_scene:
+		credits_scene.background_music_player.stop()
+		background_music_player.play()
 	_close_sub_menu()
 
 #abandon all hope the who enters below
@@ -173,7 +170,6 @@ func _is_in_intro() -> bool:
 	return animation_state_machine.get_current_node() == "Intro"
 	
 func _event_skips_intro(event : InputEvent) -> bool:
-	print("skipped")
 	return event.is_action_released("ui_accept") or \
 		event.is_action_released("ui_select") or \
 		event.is_action_released("ui_cancel") or \

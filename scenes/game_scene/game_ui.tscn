@@ -26,7 +26,6 @@ focused_viewport = NodePath("../ViewportContainer/ConfigurableSubViewport")
 
 [node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3
-autoplay = true
 bus = &"Music"
 
 [node name="LevelLoader" type="Node" parent="." node_paths=PackedStringArray("level_container", "level_loading_screen")]

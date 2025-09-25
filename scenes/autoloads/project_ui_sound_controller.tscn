@@ -1,8 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0t83ldrcpmne"]
+[gd_scene load_steps=6 format=3 uid="uid://c0t83ldrcpmne"]
 
 [ext_resource type="Script" uid="uid://bh1f2tiwptw7s" path="res://scenes/autoloads/project_ui_sound_controller.gd" id="1_7y1f6"]
-[ext_resource type="AudioStream" uid="uid://ctv8kf4lc6t8k" path="res://assets/sfx/UI_Noisy_Impact_09.wav" id="2_py6cm"]
+[ext_resource type="AudioStream" uid="uid://db87hbb0taqga" path="res://assets/sfx/UI/Hover2.wav" id="2_nc3u6"]
+[ext_resource type="AudioStream" uid="uid://gkl36knyia4l" path="res://assets/sfx/UI/Clicked.wav" id="3_slgkn"]
+[ext_resource type="AudioStream" uid="uid://dbxh2ikjawgfd" path="res://assets/sfx/UI/Changed.wav" id="7_i2j5y"]
+[ext_resource type="AudioStream" uid="uid://b66lxbpsp10ur" path="res://assets/sfx/UI/Reject.wav" id="8_yr81w"]
 
 [node name="ProjectUISoundController" type="Node"]
 script = ExtResource("1_7y1f6")
-button_pressed = ExtResource("2_py6cm")
+button_hovered = ExtResource("2_nc3u6")
+button_focused = ExtResource("2_nc3u6")
+button_pressed = ExtResource("3_slgkn")
+tab_changed = ExtResource("7_i2j5y")
+slider_drag_started = ExtResource("2_nc3u6")
+slider_drag_ended = ExtResource("2_nc3u6")
+line_text_changed = ExtResource("7_i2j5y")
+line_text_submitted = ExtResource("7_i2j5y")
+line_text_change_rejected = ExtResource("8_yr81w")
+item_list_activated = ExtResource("3_slgkn")
