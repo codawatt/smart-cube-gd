@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://d1hiknikyeyud"]
+
+[ext_resource type="Script" uid="uid://3jttcwjhyl2v" path="res://scenes/oscillator.gd" id="1_0t63x"]
+[ext_resource type="Script" uid="uid://bjkh68sdx6yq0" path="res://scenes/coin.gd" id="1_11l1o"]
+[ext_resource type="Texture2D" uid="uid://cvx888d6p0u5s" path="res://assets/coin.png" id="1_d5gmh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0t63x"]
+size = Vector2(33, 33)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_i64fm"]
+polygon = PackedVector2Array(-16, -16, 17, -16, 17, 17, -16, 17)
+
+[node name="Coin" type="Area2D"]
+script = ExtResource("1_11l1o")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+texture = ExtResource("1_d5gmh")
+script = ExtResource("1_0t63x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_0t63x")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_i64fm")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjt16kaaf3iwc"]
+
+[ext_resource type="Script" uid="uid://dkdo6hyragn8e" path="res://scenes/rain.gd" id="1_tchf5"]
+
+[node name="Rain" type="Node2D"]
+script = ExtResource("1_tchf5")

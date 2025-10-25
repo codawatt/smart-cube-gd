@@ -1,0 +1,131 @@
+[gd_scene load_steps=20 format=3 uid="uid://b5r1gt5m220cs"]
+
+[ext_resource type="Texture2D" uid="uid://dox5roph2nto7" path="res://assets/Floor.png" id="1_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://c08kfujsb3k1o" path="res://scenes/player.tscn" id="1_o6xl0"]
+[ext_resource type="Script" uid="uid://b8vbjfft4dxet" path="res://scenes/GameManager.gd" id="1_tipki"]
+[ext_resource type="Texture2D" uid="uid://cdk256dv7cifj" path="res://assets/Platform.png" id="2_tbgi4"]
+[ext_resource type="Texture2D" uid="uid://cc7e8ygtroxta" path="res://assets/cobble.png" id="2_trceg"]
+[ext_resource type="Texture2D" uid="uid://c7lb3t5qbcwad" path="res://assets/PlayerRed.png" id="3_tefeu"]
+[ext_resource type="Texture2D" uid="uid://bqn3jk73eivpp" path="res://assets/Square.png" id="4_o6xl0"]
+[ext_resource type="Script" uid="uid://dggkuebq4o2e5" path="res://scenes/grid.gd" id="6_85g3d"]
+[ext_resource type="PackedScene" uid="uid://dnqb15ukbwuyf" path="res://scenes/floor.tscn" id="6_tipki"]
+[ext_resource type="PackedScene" uid="uid://ms1eck80yiwn" path="res://scenes/square.tscn" id="7_85g3d"]
+[ext_resource type="PackedScene" uid="uid://dpmb5g3l81m4u" path="res://scenes/liquid.tscn" id="11_ya4ey"]
+[ext_resource type="Script" uid="uid://dc2tpagag7u1j" path="res://scenes/camera_2d.gd" id="12_eb6dy"]
+[ext_resource type="PackedScene" uid="uid://d1hiknikyeyud" path="res://scenes/coin.tscn" id="12_trceg"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tipki"]
+texture = ExtResource("1_jyhfs")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_85g3d"]
+texture = ExtResource("2_tbgi4")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_choun"]
+texture = ExtResource("3_tefeu")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ya4ey"]
+texture = ExtResource("4_o6xl0")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_eb6dy"]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_tipki")
+sources/1 = SubResource("TileSetAtlasSource_85g3d")
+sources/2 = SubResource("TileSetAtlasSource_choun")
+sources/3 = SubResource("TileSetAtlasSource_ya4ey")
+
+[sub_resource type="Environment" id="Environment_eb6dy"]
+glow_enabled = true
+glow_bloom = 1.0
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tipki")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.46, 0.46, 0.46, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.41590014, 0.41590014, 0.41590014, 0.23921569)
+position = Vector2(512, 288)
+texture = ExtResource("2_trceg")
+
+[node name="Grid" type="TileMapLayer" parent="."]
+unique_name_in_owner = true
+enabled = false
+tile_set = SubResource("TileSet_eb6dy")
+script = ExtResource("6_85g3d")
+
+[node name="Player" parent="." instance=ExtResource("1_o6xl0")]
+unique_name_in_owner = true
+position = Vector2(416, 64)
+
+[node name="Elements" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Floor" parent="Elements" instance=ExtResource("6_tipki")]
+position = Vector2(544, 352)
+
+[node name="Floor5" parent="Elements" instance=ExtResource("6_tipki")]
+position = Vector2(608, 288)
+
+[node name="Floor6" parent="Elements" instance=ExtResource("6_tipki")]
+position = Vector2(544, 288)
+v = 1
+
+[node name="Floor3" parent="Elements" instance=ExtResource("6_tipki")]
+position = Vector2(416, 128)
+
+[node name="Floor4" parent="Elements" instance=ExtResource("6_tipki")]
+position = Vector2(288, 352)
+
+[node name="Floor7" parent="Elements" instance=ExtResource("6_tipki")]
+position = Vector2(352, 416)
+
+[node name="Floor2" parent="Elements" instance=ExtResource("6_tipki")]
+position = Vector2(480, 352)
+
+[node name="Square" parent="Elements" instance=ExtResource("7_85g3d")]
+position = Vector2(224, 352)
+
+[node name="Liquid" parent="." instance=ExtResource("11_ya4ey")]
+modulate = Color(1, 1, 1, 0.78431374)
+position = Vector2(512, 896)
+start_delay = 0.8
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(512, 288)
+script = ExtResource("12_eb6dy")
+
+[node name="ShakeTimer" type="Timer" parent="Camera2D"]
+unique_name_in_owner = true
+wait_time = 0.2
+
+[node name="Coin" parent="." instance=ExtResource("12_trceg")]
+position = Vector2(606, 224)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_eb6dy")
+
+[connection signal="player_next_position" from="." to="Player" method="_on_main_player_next_position"]
+[connection signal="subtracted" from="." to="Camera2D" method="_on_main_subtracted"]
+[connection signal="check_ground" from="Player" to="." method="_on_check_player_ground"]
+[connection signal="wish_move" from="Player" to="." method="_on_player_wish_move"]

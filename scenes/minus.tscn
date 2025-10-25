@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://c1imdma2swjq"]
+
+[ext_resource type="Texture2D" uid="uid://ybxou512yoxl" path="res://assets/minus.png" id="1_qdjqv"]
+[ext_resource type="Script" uid="uid://cqklxujs1n477" path="res://scenes/minus.gd" id="1_whq0q"]
+[ext_resource type="Script" uid="uid://3jttcwjhyl2v" path="res://scenes/oscillator.gd" id="3_ayjlk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_whq0q"]
+size = Vector2(32, 32)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ayjlk"]
+polygon = PackedVector2Array(-16, 4, -16, -4, 16, -4, 16, 4)
+
+[node name="Minus" type="Area2D"]
+script = ExtResource("1_whq0q")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_qdjqv")
+script = ExtResource("3_ayjlk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_whq0q")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_ayjlk")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

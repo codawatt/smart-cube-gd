@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://1e0ysdcrr7b2"]
+
+[ext_resource type="Texture2D" uid="uid://cnnneylfoaoaf" path="res://assets/placeholders/square.svg" id="1_3kxfc"]
+[ext_resource type="Script" uid="uid://b4m53lb3c4jrc" path="res://scenes/game_elements/tile/tile.gd" id="2_6xwu2"]
+
+[node name="Tile" type="Sprite2D"]
+texture = ExtResource("1_3kxfc")
+script = ExtResource("2_6xwu2")
+
+[node name="NumberLabel" type="Label" parent="."]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = -32.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 38
+text = "D"
+horizontal_alignment = 1
+vertical_alignment = 1

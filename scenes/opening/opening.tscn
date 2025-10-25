@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b7fev26x5xs8a"]
 
 [ext_resource type="Script" uid="uid://ceg2rxmmqo022" path="res://scenes/opening/opening.gd" id="1_l1wh1"]
-[ext_resource type="Texture2D" uid="uid://bl6tabb0boy77" path="res://assets/heirloom.png" id="2_ke3tw"]
+[ext_resource type="Texture2D" uid="uid://sxket62rfwa3" path="res://assets/code.png" id="2_ke3tw"]
 
 [node name="Opening" type="Control"]
 layout_mode = 3

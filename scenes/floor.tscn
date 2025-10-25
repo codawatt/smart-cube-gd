@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://dnqb15ukbwuyf"]
+
+[ext_resource type="Script" uid="uid://dhwsryeltqffm" path="res://scenes/floor.gd" id="1_kuqtn"]
+[ext_resource type="Texture2D" uid="uid://drkewdjqv3p76" path="res://assets/Floor_margins.png" id="2_kuqtn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kuqtn"]
+size = Vector2(64, 64)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_whr1e"]
+cull_mode = 1
+polygon = PackedVector2Array(-31, -31, 31, -31, 31, 31, -31, 31)
+
+[node name="Floor" type="StaticBody2D" groups=["Elements"]]
+script = ExtResource("1_kuqtn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(0.8, 0.8, 0.8, 1)
+self_modulate = Color(0.74, 0.74, 0.74, 1)
+texture_filter = 1
+texture = ExtResource("2_kuqtn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_kuqtn")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+texture_filter = 1
+occluder = SubResource("OccluderPolygon2D_whr1e")

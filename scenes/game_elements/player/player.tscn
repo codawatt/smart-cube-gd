@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://ghdeh7a0xshp"]
+
+[ext_resource type="Script" uid="uid://c1vytcygqag4y" path="res://scenes/game_elements/player/player.gd" id="1_oqaka"]
+[ext_resource type="Texture2D" uid="uid://cnnneylfoaoaf" path="res://assets/placeholders/square.svg" id="2_fkgod"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_epjya"]
+size = Vector2(64, 64)
+
+[node name="Player" type="Area2D"]
+script = ExtResource("1_oqaka")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(0, 16)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_fkgod")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_epjya")

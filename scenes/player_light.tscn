@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bufx02d3xql4x"]
+
+[ext_resource type="Texture2D" uid="uid://bqn3jk73eivpp" path="res://assets/Square.png" id="1_ketg5"]
+
+[node name="PointLight2D" type="PointLight2D"]
+scale = Vector2(8, 5)
+color = Color(1, 1, 1, 0.26666668)
+energy = 0.16
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.15686275)
+shadow_filter = 1
+texture = ExtResource("1_ketg5")
+texture_scale = 6.0

@@ -1,0 +1,83 @@
+[gd_scene load_steps=5 format=3 uid="uid://dl73irwrbe81p"]
+
+[ext_resource type="Script" uid="uid://by01icus8wdlp" path="res://scenes/mobile_ui.gd" id="1_ebdea"]
+[ext_resource type="Theme" uid="uid://e4footrvyqtr" path="res://assets/themes/kenneyUI_modulate.tres" id="2_uda4p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uchyk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0fbet"]
+
+[node name="MobileUI" type="Control"]
+top_level = true
+custom_minimum_size = Vector2(0.2, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ebdea")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="LeftControl" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="LeftTouch" type="TouchScreenButton" parent="LeftControl"]
+visible = false
+position = Vector2(93, -64)
+scale = Vector2(8.162, 8.162)
+shape = SubResource("CircleShape2D_uchyk")
+action = "ui_left"
+
+[node name="LeftButton" type="Button" parent="LeftControl"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+theme = ExtResource("2_uda4p")
+text = "<="
+
+[node name="RightControl" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="RightTouch" type="TouchScreenButton" parent="RightControl"]
+visible = false
+position = Vector2(-60, -56)
+scale = Vector2(8.162, 8.162)
+shape = SubResource("CircleShape2D_0fbet")
+action = "ui_right"
+
+[node name="RightButton" type="Button" parent="RightControl"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+theme = ExtResource("2_uda4p")
+text = "=>"
+
+[connection signal="pressed" from="LeftControl/LeftButton" to="." method="_on_left_button_pressed"]
+[connection signal="pressed" from="RightControl/RightButton" to="." method="_on_right_button_pressed"]

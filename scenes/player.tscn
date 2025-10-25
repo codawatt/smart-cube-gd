@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://c08kfujsb3k1o"]
+
+[ext_resource type="Script" uid="uid://b5tqhm3s860r1" path="res://scenes/player.gd" id="1_g2els"]
+[ext_resource type="Texture2D" uid="uid://cel44wdf7albc" path="res://assets/player_lines.png" id="3_qlg0r"]
+[ext_resource type="PackedScene" uid="uid://bufx02d3xql4x" path="res://scenes/player_light.tscn" id="4_dqkch"]
+[ext_resource type="Texture2D" uid="uid://bhy1fsqa3rvk5" path="res://assets/PlayerNoLines.png" id="4_tuyoq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
+size = Vector2(64, 64)
+
+[node name="Player" type="CharacterBody2D" groups=["Elements"]]
+texture_filter = 1
+script = ExtResource("1_g2els")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(0.37, 0.107300006, 0.107300006, 1)
+texture = ExtResource("3_qlg0r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+texture = ExtResource("4_tuyoq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_g2els")
+
+[node name="MovementStrategyManager" type="Node" parent="."]
+
+[node name="ArcStrategy" type="Node" parent="MovementStrategyManager"]
+
+[node name="LineStrategy" type="Node" parent="MovementStrategyManager"]
+
+[node name="ArcLineStrategy" type="Node" parent="MovementStrategyManager"]
+
+[node name="PlayerLight" parent="." instance=ExtResource("4_dqkch")]

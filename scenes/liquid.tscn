@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://dpmb5g3l81m4u"]
+
+[ext_resource type="Script" uid="uid://hqadvbosljih" path="res://scenes/liquid.gd" id="1_gjbtd"]
+[ext_resource type="Shader" uid="uid://nouc1fpk3lxj" path="res://scenes/liquid.gdshader" id="1_l8c6b"]
+[ext_resource type="Texture2D" uid="uid://5khx4rugnh3l" path="res://assets/white-lava.png" id="3_gjbtd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2kqjw"]
+shader = ExtResource("1_l8c6b")
+shader_parameter/amplitude = 0.0030000001425
+shader_parameter/frequency = 5.0000002375
+shader_parameter/speed = 0.2
+shader_parameter/top_offset = 0.01
+shader_parameter/fill_color = Color(1, 1, 1, 1)
+shader_parameter/use_texture = true
+shader_parameter/edge_softness = 0.8
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l8c6b"]
+size = Vector2(1024, 555)
+
+[node name="Liquid" type="Area2D"]
+script = ExtResource("1_gjbtd")
+trans = 0
+easing = 0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1.0855604, 0.38284552, 0, 0.85882354)
+texture_filter = 1
+material = SubResource("ShaderMaterial_2kqjw")
+texture = ExtResource("3_gjbtd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 10.5)
+shape = SubResource("RectangleShape2D_l8c6b")

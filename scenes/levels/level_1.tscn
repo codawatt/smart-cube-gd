@@ -1,59 +1,71 @@
-[gd_scene load_steps=8 format=3 uid="uid://dtxt502bqvmbi"]
+[gd_scene load_steps=13 format=3 uid="uid://cjunca07j0ceg"]
 
-[ext_resource type="Script" uid="uid://uxhwr6qpilo8" path="res://scenes/levels/level.gd" id="1_sk5k4"]
-[ext_resource type="Texture2D" uid="uid://msnwrfvy2fkv" path="res://icon.svg" id="2_c0txg"]
-[ext_resource type="Script" uid="uid://ctmfab8ockmyq" path="res://scenes/debug_sandbox/icon.gd" id="3_eqqov"]
-[ext_resource type="Script" uid="uid://db73spsm1k7gx" path="res://scenes/debug_sandbox/polygon_2d.gd" id="4_eqqov"]
-[ext_resource type="Script" uid="uid://bi810w6m2bveq" path="res://scenes/debug_sandbox/label.gd" id="5_po5pe"]
-[ext_resource type="Script" uid="uid://bw2yorkj31gyt" path="res://scenes/debug_sandbox/prototype.gd" id="6_cr6sr"]
-[ext_resource type="Script" uid="uid://cr57n354jmtqm" path="res://scenes/debug_sandbox/selftest.gd" id="7_oc4kc"]
+[ext_resource type="Script" uid="uid://cdsibchsavw8s" path="res://scenes/levels/level.gd" id="1_2q6dc"]
+[ext_resource type="PackedScene" uid="uid://c08kfujsb3k1o" path="res://scenes/player.tscn" id="2_ppgk2"]
+[ext_resource type="PackedScene" uid="uid://dnqb15ukbwuyf" path="res://scenes/floor.tscn" id="3_2r41h"]
+[ext_resource type="PackedScene" uid="uid://ms1eck80yiwn" path="res://scenes/square.tscn" id="4_klq6b"]
+[ext_resource type="PackedScene" uid="uid://d1hiknikyeyud" path="res://scenes/coin.tscn" id="5_b121j"]
+[ext_resource type="PackedScene" uid="uid://ykvykc0a8nmm" path="res://scenes/camera_2d.tscn" id="6_2r41h"]
+[ext_resource type="PackedScene" uid="uid://d4i7r5j1lpbmg" path="res://scenes/plus.tscn" id="6_b121j"]
+[ext_resource type="Texture2D" uid="uid://cc7e8ygtroxta" path="res://assets/cobble.png" id="7_8c41q"]
+[ext_resource type="PackedScene" uid="uid://dpmb5g3l81m4u" path="res://scenes/liquid.tscn" id="7_klq6b"]
+[ext_resource type="PackedScene" uid="uid://c1imdma2swjq" path="res://scenes/minus.tscn" id="7_olg7q"]
 
-[node name="Node2D" type="Node2D"]
-script = ExtResource("1_sk5k4")
-next_level_path = "uid://d0k1mbjrjtwmi"
+[sub_resource type="TileSet" id="TileSet_ppgk2"]
+tile_size = Vector2i(64, 64)
 
-[node name="Icon" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(328, 242)
-rotation = 5572.761
-texture = ExtResource("2_c0txg")
-script = ExtResource("3_eqqov")
+[sub_resource type="Environment" id="Environment_klq6b"]
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-position = Vector2(449, 202)
-scale = Vector2(1.1185805, 1.1185805)
-polygon = PackedVector2Array(50, 0, 16.18034, 11.755705, 15.4508505, 47.552826, -6.18034, 19.021132, -40.45085, 29.389263, -20, 2.4492127e-15, -40.45085, -29.389263, -6.18034, -19.021132, 15.4508505, -47.552826, 16.18034, -11.755705)
-script = ExtResource("4_eqqov")
-
-[node name="Label" type="Label" parent="."]
+[node name="Level_1" type="Control"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 619.0
-offset_top = 284.0
-offset_right = 728.0
-offset_bottom = 349.5
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
-text = "9"
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("5_po5pe")
+script = ExtResource("1_2q6dc")
+elements_packed = Dictionary[String, PackedScene]({
+"Coin": ExtResource("5_b121j"),
+"Floor": ExtResource("3_2r41h"),
+"Minus": ExtResource("7_olg7q"),
+"Number": ExtResource("4_klq6b"),
+"Player": ExtResource("2_ppgk2"),
+"Plus": ExtResource("6_b121j")
+})
 
-[node name="Node" type="Node" parent="."]
-script = ExtResource("6_cr6sr")
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -128.0
+offset_right = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.46200004, 0.55, 0.46493334, 1)
 
-[node name="Button" type="Button" parent="."]
-offset_left = 426.0
-offset_top = 304.0
-offset_right = 542.0
-offset_bottom = 366.0
-text = "Win"
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.1254902)
+position = Vector2(512, 239.99998)
+scale = Vector2(1.125, 1.2777779)
+texture = ExtResource("7_8c41q")
 
-[node name="BoxContainer" type="BoxContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("7_oc4kc")
+[node name="Grid" type="TileMapLayer" parent="."]
+unique_name_in_owner = true
+tile_set = SubResource("TileSet_ppgk2")
 
-[connection signal="pressed" from="Button" to="." method="_on_win_button_pressed"]
+[node name="Elements" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="SceneCamera" parent="." instance=ExtResource("6_2r41h")]
+unique_name_in_owner = true
+MAX_OFFSET = 1.0
+
+[node name="Liquid" parent="." instance=ExtResource("7_klq6b")]
+unique_name_in_owner = true
+position = Vector2(512, 848)
+start_position = Vector2(512, 848)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_klq6b")

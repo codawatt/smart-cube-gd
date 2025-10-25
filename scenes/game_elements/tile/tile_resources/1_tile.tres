@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="tile_data" load_steps=2 format=3 uid="uid://bmxrxh7g1xswc"]
+
+[ext_resource type="Script" uid="uid://dycvnkhlxtaok" path="res://scenes/game_elements/tile/tile_data.gd" id="1_hqe6j"]
+
+[resource]
+script = ExtResource("1_hqe6j")
+color = Color(0.25, 1, 0, 1)
+value = 1
+metadata/_custom_type_script = "uid://dycvnkhlxtaok"
