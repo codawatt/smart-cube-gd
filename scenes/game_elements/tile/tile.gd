@@ -31,5 +31,4 @@ func get_grid_position():
 	var local_pos: Vector2 = grid.to_local(global_position)
 	var cell: Vector2i = grid.local_to_map(local_pos)
 
-	print("Cell (grid) at global pos: ", cell)
 	return cell

@@ -28,21 +28,17 @@ signal remove_button_clicked(action_name : String, input_name : String)
 				_new_action_name_map[_input_name] = _readable_name
 			action_name_map = _new_action_name_map
 
-## Show action names that are not explicitely listed in an action name map.
 @export var show_all_actions : bool = true
 @export_group("Icons")
 @export var add_button_texture : Texture2D
 @export var remove_button_texture : Texture2D
 @export var input_icon_mapper : InputIconMapper
 @export_group("Built-in Actions")
-## Shows Godot's built-in actions (action names starting with "ui_") in the tree.
+
 @export var show_built_in_actions : bool = false
-## Prevents assigning inputs that are already assigned to Godot's built-in actions (action names starting with "ui_"). Not recommended.
 @export var catch_built_in_duplicate_inputs : bool = false
-## Maps the names of built-in input actions to readable names for users.
 @export var built_in_action_name_map := InputEventHelper.BUILT_IN_ACTION_NAME_MAP
 @export_group("Debug")
-## Maps the names of input actions to readable names for users.
 @export var action_name_map : Dictionary
 
 var tree_item_add_map : Dictionary = {}

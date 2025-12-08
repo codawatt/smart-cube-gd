@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://hshd2omypbo0"]
+
+[ext_resource type="Script" uid="uid://bvabx8c0j1twt" path="res://scenes/level_banner.gd" id="1_7vo50"]
+
+[node name="LevelBanner" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7vo50")
+hold_duration = 1.2
+target_y = 32.0
+
+[node name="Label" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 18.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1

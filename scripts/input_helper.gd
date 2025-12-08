@@ -1,6 +1,5 @@
 class_name InputEventHelper
 extends Node
-## Helper class for organizing constants related to [InputEvent].
 
 const DEVICE_KEYBOARD = "Keyboard"
 const DEVICE_MOUSE = "Mouse"

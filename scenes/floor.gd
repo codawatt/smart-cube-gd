@@ -2,14 +2,14 @@
 extends StaticBody2D
 class_name StaticFloor
 
+var walk_under:bool = false
 
-enum floor_type {FLOOR, PLATFORM}
-@export var v:floor_type
-
-func _ready() -> void:
-	match(v):
-		floor_type.FLOOR:
+func change_type(selected_type:int) -> void:
+	match(selected_type):
+		0:
 			%Sprite2D.texture = preload("res://assets/Floor_margins.png")
-		floor_type.PLATFORM:
+			walk_under = false
+		1:
 			%Sprite2D.texture = preload("res://assets/Platform_margins.png")
+			walk_under = true
 			

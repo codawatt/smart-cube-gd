@@ -20,7 +20,6 @@ const BOLD_HEADING_STRING_REPLACEMENT = "$1[b][font_size=%d]$2[/font_size][/b]"
 @export_group("Extra Options")
 @export var disable_images : bool = false
 @export var disable_urls : bool = false
-## For platforms that don't permit linking to other domains or products.
 @export var disable_opening_links: bool = false
 
 func load_file(file_path) -> String:

@@ -1,9 +1,7 @@
 class_name SceneLoaderClass
 extends Node
-#region Signals
 signal scene_loaded
-#endregion
-#region Properties
+
 @export_file("*.tscn") var loading_screen_path : String : set = set_loading_screen
 @export_group("Debug")
 @export var debug_enabled : bool = false
@@ -14,8 +12,7 @@ var _loading_screen : PackedScene
 var _scene_path : String
 var _loaded_resource : Resource
 var _background_loading : bool
-#endregion
-#region Implementation
+
 func _check_scene_path() -> bool:
 	if _scene_path == null or _scene_path == "":
 		push_warning("scene path is empty")
@@ -101,8 +98,7 @@ func load_scene(scene_path : String, in_background : bool = false) -> void:
 	set_process(true)
 	if _check_loading_screen() and not _background_loading:
 		change_scene_to_loading_screen()
-#endregion
-#region Node
+
 func _ready() -> void:
 	set_process(false)
 
@@ -116,4 +112,3 @@ func _process(_delta) -> void:
 			set_process(false)
 			if not _background_loading:
 				change_scene_to_resource()
-#endregion 

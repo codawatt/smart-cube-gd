@@ -13,24 +13,20 @@ const COMMON_REPLACE_STRINGS: Dictionary = {
 	"Rt": "Right Trigger",
 	"Lb": "Left Shoulder",
 	"Rb": "Right Shoulder",
-} # Dictionary[String, String]
-## Gives priority to icons with occurrences of the provided strings.
+} 
 @export var prioritized_strings : Array[String]
-## Replaces the first occurence in icon names of the key with the value.
 @export var replace_strings : Dictionary # Dictionary[String, String]
-## Filters the icon names of the provided strings.
 @export var filtered_strings : Array[String]
-## Adds entries for "Up", "Down", "Left", "Right" to icon names ending with "Stick".
+
 @export var add_stick_directions : bool = false
 @export var intial_joypad_device : String = InputEventHelper.DEVICE_GENERIC
-## Attempt to match the icon names to the input names based on the string rules.
+
 @warning_ignore("unused_private_class_variable")
 @export var _match_icons_to_inputs_action : bool = false :
 	set(value):
 		if value and Engine.is_editor_hint():
 			_match_icons_to_inputs()
-# For Godot 4.4
-# @export_tool_button("Match Icons to Inputs") var _match_icons_to_inputs_action = _match_icons_to_inputs
+
 @export var matching_icons : Dictionary # Dictionary[String, Texture]
 @export_group("Debug")
 @export var all_icons : Dictionary # Dictionary[String, Texture]

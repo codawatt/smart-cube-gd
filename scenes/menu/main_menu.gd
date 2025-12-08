@@ -6,7 +6,6 @@ signal sub_menu_closed
 signal game_started
 signal game_exited
 
-## Defines the path to the game scene. Hides the play button if empty.
 @export_file("*.tscn") var game_scene_path : String
 @export var options_packed_scene : PackedScene
 @export var credits_packed_scene : PackedScene
@@ -20,6 +19,8 @@ var options_scene
 var credits_scene
 var sub_menu
 var level_select_scene : Node
+var level_creator_scene : Node
+var custom_levels_scene : Node
 var animation_state_machine : AnimationNodeStateMachinePlayback
 
 @onready var menu_container = %MenuContainer
@@ -36,7 +37,8 @@ var animation_state_machine : AnimationNodeStateMachinePlayback
 @onready var level_select_button = %LevelSelectButton
 @onready var level_select_container = %LevelSelectContainer
 @onready var background_music_player = $BackgroundMusicPlayer
-
+@onready var level_creator_button = %LevelCreatorButton
+@onready var custom_level_button = %CustomLevelButton
 func load_game_scene() -> void:
 	GameState.start_game() 
 	if signal_game_start:
@@ -138,6 +140,7 @@ func _ready() -> void:
 	_hide_new_game_if_unset()
 	_add_level_select_if_set()
 	_show_continue_if_set()
+	_show_level_creator_if_set()
 
 func _on_new_game_button_pressed() -> void:
 	new_game()
@@ -163,7 +166,6 @@ func _on_back_button_pressed() -> void:
 		background_music_player.play()
 	_close_sub_menu()
 
-#abandon all hope the who enters below
 func intro_done() -> void:
 	animation_state_machine.travel("OpenMainMenu")
 func _is_in_intro() -> bool:
@@ -189,6 +191,12 @@ func _show_continue_if_set() -> void:
 	if GameState.has_game_state():
 		continue_game_button.show()
 
+func _show_level_creator_if_set() -> void:
+	if GameState.has_game_state():
+		level_creator_button.show()
+		level_creator_button.disabled = false
+		custom_level_button.show()
+
 func _on_continue_game_button_pressed() -> void:
 	GameState.continue_game()
 	load_game_scene()
@@ -199,3 +207,11 @@ func _on_level_select_button_pressed() -> void:
 func _on_new_game_confirmation_dialog_confirmed():
 	GameState.reset()
 	load_game_scene()
+
+
+func _on_level_creator_button_pressed() -> void:
+	_open_sub_menu(level_creator_scene)
+
+
+func _on_custom_level_button_pressed() -> void:
+	_open_sub_menu(custom_levels_scene) 

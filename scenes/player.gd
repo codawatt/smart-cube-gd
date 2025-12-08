@@ -8,19 +8,42 @@ var _move_tween: Tween
 var can_move:bool = true
 var _active_tweens: Array[Tween] = []
 var last_strategy:int = 0
-var move_duration:float = 0.3
-var fall_duration:float = 0.3
+var move_duration:float = 0.21
+var fall_duration:float = 0.21
 var accel:float = 0.08
 var coyote_time :float= 0.5
 signal wish_move(current_position:Vector2,dir:int)
 signal check_ground(current_position:Vector2)
 
+var _buffered_dir: int = 0
+var ui:MobileUi =null
 
+func _physics_process(_delta: float) -> void:
+	if can_move and _buffered_dir != 0:
+		emit_signal("wish_move", global_position, _buffered_dir)
+		_buffered_dir = 0
+
+func _ready() -> void:
+	var found := get_tree().root.find_children("*", "MobileUi", true, false)
+	if not found.is_empty():
+		ui = found[0] as MobileUi
+		ui.player = self
+		
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEvent and event.is_action_pressed("ui_left",true):
-		emit_signal("wish_move",global_position,-1)
-	if event is InputEvent and event.is_action_pressed("ui_right", true):
-		emit_signal("wish_move",global_position,1)
+	if event.is_action_pressed("move_left", true):
+		_buffer_move(-1)
+	elif event.is_action_pressed("move_right", true):
+		_buffer_move(1)
+
+func ui_press_right():
+	_buffer_move(1)
+
+func ui_press_left():
+	_buffer_move(-1)
+
+func _buffer_move(dir: int) -> void:
+	# last input wins
+	_buffered_dir = dir
 
 func _on_main_player_next_position(pos: Vector2, strategy: int) -> void:
 	if not can_move:
@@ -79,16 +102,6 @@ func kill_all_player_tweens() -> void:
 		if is_instance_valid(t):
 			t.kill()
 	_active_tweens.clear()
-# Flash to white and back to the current color twice
-func flash_white_twice(target: CanvasItem = self, step: float = 0.08) -> Tween:
-	var base: Color = target.modulate
-	var t := create_tween()
-	_track(t)
-	t.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	for _i in range(2):
-		t.tween_property(target, "modulate", Color(1, 1, 1, base.a), step)
-		t.tween_property(target, "modulate", base, step)
-	return t
 
 func move_linear(next_position: Vector2, duration: float = 0.1) -> Tween:
 	if _move_tween and _move_tween.is_running():

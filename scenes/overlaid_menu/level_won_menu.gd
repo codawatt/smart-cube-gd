@@ -6,6 +6,11 @@ signal continue_pressed
 signal restart_pressed
 signal main_menu_pressed
 
+var _level_number: int = 1
+func set_level_number(n: int) -> void:
+	_level_number = n
+	%DescriptionLabel.text = "[center]Level %d complete![/center]" % n
+ 
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		if $ConfirmMainMenu.visible:

@@ -1,22 +1,23 @@
-[gd_scene load_steps=13 format=3 uid="uid://cjunca07j0ceg"]
+[gd_scene load_steps=14 format=3 uid="uid://cjunca07j0ceg"]
 
 [ext_resource type="Script" uid="uid://cdsibchsavw8s" path="res://scenes/levels/level.gd" id="1_2q6dc"]
 [ext_resource type="PackedScene" uid="uid://c08kfujsb3k1o" path="res://scenes/player.tscn" id="2_ppgk2"]
 [ext_resource type="PackedScene" uid="uid://dnqb15ukbwuyf" path="res://scenes/floor.tscn" id="3_2r41h"]
-[ext_resource type="PackedScene" uid="uid://ms1eck80yiwn" path="res://scenes/square.tscn" id="4_klq6b"]
+[ext_resource type="PackedScene" uid="uid://ms1eck80yiwn" path="res://scenes/number_square.tscn" id="4_klq6b"]
 [ext_resource type="PackedScene" uid="uid://d1hiknikyeyud" path="res://scenes/coin.tscn" id="5_b121j"]
 [ext_resource type="PackedScene" uid="uid://ykvykc0a8nmm" path="res://scenes/camera_2d.tscn" id="6_2r41h"]
-[ext_resource type="PackedScene" uid="uid://d4i7r5j1lpbmg" path="res://scenes/plus.tscn" id="6_b121j"]
+[ext_resource type="PackedScene" uid="uid://d4i7r5j1lpbmg" path="res://scenes/power_up.tscn" id="6_b121j"]
 [ext_resource type="Texture2D" uid="uid://cc7e8ygtroxta" path="res://assets/cobble.png" id="7_8c41q"]
 [ext_resource type="PackedScene" uid="uid://dpmb5g3l81m4u" path="res://scenes/liquid.tscn" id="7_klq6b"]
 [ext_resource type="PackedScene" uid="uid://c1imdma2swjq" path="res://scenes/minus.tscn" id="7_olg7q"]
+[ext_resource type="Resource" uid="uid://ddfogph2inakv" path="res://resources/levels/level_35.tres" id="8_7pb6i"]
 
 [sub_resource type="TileSet" id="TileSet_ppgk2"]
 tile_size = Vector2i(64, 64)
 
 [sub_resource type="Environment" id="Environment_klq6b"]
 
-[node name="Level_1" type="Control"]
+[node name="Level" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,6 +33,7 @@ elements_packed = Dictionary[String, PackedScene]({
 "Player": ExtResource("2_ppgk2"),
 "Plus": ExtResource("6_b121j")
 })
+level_data = ExtResource("8_7pb6i")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -69,3 +71,5 @@ start_position = Vector2(512, 848)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_klq6b")
+
+[connection signal="body_entered" from="Liquid" to="." method="_on_lava_body_entered"]

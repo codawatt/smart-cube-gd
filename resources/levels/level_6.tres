@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=2 format=3 uid="uid://c4da5pivexqlq"]
+
+[ext_resource type="Script" uid="uid://c5chowuk78om7" path="res://scripts/level_data.gd" id="1_bwa2w"]
+
+[resource]
+script = ExtResource("1_bwa2w")
+_stage_numbers = Dictionary[Vector2i, int]({
+Vector2i(7, 4): 1,
+Vector2i(8, 4): 2,
+Vector2i(9, 4): 1
+})
+_player_start = Vector2i(8, 3)
+metadata/_custom_type_script = "uid://c5chowuk78om7"

@@ -316,6 +316,7 @@ transitions = ["Start", "Intro", SubResource("AnimationNodeStateMachineTransitio
 graph_offset = Vector2(78, 24)
 
 [node name="MainMenu" type="Control"]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -455,7 +456,7 @@ offset_bottom = 104.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 0
-theme_override_constants/separation = 16
+theme_override_constants/separation = 12
 alignment = 1
 vertical = true
 script = ExtResource("3_kiqgm")
@@ -479,6 +480,21 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 text = "Level Select"
+
+[node name="LevelCreatorButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+disabled = true
+text = "Level Creator
+"
+
+[node name="CustomLevelButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+disabled = true
+text = "Custom Levels"
 
 [node name="OptionsButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer"]
 unique_name_in_owner = true
@@ -580,6 +596,8 @@ All progress in the current game will be lost."
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/ContinueGameButton" to="." method="_on_continue_game_button_pressed"]
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
+[connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/LevelCreatorButton" to="." method="_on_level_creator_button_pressed"]
+[connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/CustomLevelButton" to="." method="_on_custom_level_button_pressed"]
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

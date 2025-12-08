@@ -1,7 +1,6 @@
 @tool
 class_name ConfigNameLabel
 extends Label
-## Displays the value of `application/config/name`, set in project settings.
 
 const NO_NAME_STRING : String = "gd-template"
 

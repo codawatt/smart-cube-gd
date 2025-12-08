@@ -30,10 +30,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 tab_alignment = 1
-current_tab = 1
+current_tab = 0
 
 [node name="Controls" type="MarginContainer" parent="TabContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 8
@@ -64,6 +63,7 @@ custom_minimum_size = Vector2(560, 480)
 layout_mode = 2
 follow_focus = true
 script = ExtResource("4_su8ni")
+action_groups = 1
 action_group_names = Array[String](["Primary", "Secondary", "Tertiary", "Quanternary", "Quinary"])
 input_action_names = Array[StringName]([&"move_forward", &"move_backward", &"move_up", &"move_down", &"move_left", &"move_right", &"interact"])
 readable_action_names = Array[String](["Move Forward", "Move Backward", "Move Up", "Move Down", "Move Left", "Move Right", "Interact"])
@@ -160,6 +160,7 @@ dialog_text = "Are you sure you want to reset controls back to the defaults?"
 script = ExtResource("6_fgn7b")
 
 [node name="Audio" type="MarginContainer" parent="TabContainer"]
+visible = false
 layout_mode = 2
 script = ExtResource("8_abuyc")
 audio_control_scene = ExtResource("9_okkns")

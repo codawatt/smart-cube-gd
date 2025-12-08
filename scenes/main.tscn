@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bqn3jk73eivpp" path="res://assets/Square.png" id="4_o6xl0"]
 [ext_resource type="Script" uid="uid://dggkuebq4o2e5" path="res://scenes/grid.gd" id="6_85g3d"]
 [ext_resource type="PackedScene" uid="uid://dnqb15ukbwuyf" path="res://scenes/floor.tscn" id="6_tipki"]
-[ext_resource type="PackedScene" uid="uid://ms1eck80yiwn" path="res://scenes/square.tscn" id="7_85g3d"]
+[ext_resource type="PackedScene" uid="uid://ms1eck80yiwn" path="res://scenes/number_square.tscn" id="7_85g3d"]
 [ext_resource type="PackedScene" uid="uid://dpmb5g3l81m4u" path="res://scenes/liquid.tscn" id="11_ya4ey"]
 [ext_resource type="Script" uid="uid://dc2tpagag7u1j" path="res://scenes/camera_2d.gd" id="12_eb6dy"]
 [ext_resource type="PackedScene" uid="uid://d1hiknikyeyud" path="res://scenes/coin.tscn" id="12_trceg"]

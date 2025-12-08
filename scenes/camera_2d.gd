@@ -11,8 +11,8 @@ func _ready() -> void:
 	_shake_timer.timeout.connect(_on_shake_done)
 
 func _process(_delta: float) -> void:
-	var t := 1.0 - (_shake_timer.time_left / _shake_timer.wait_time) # 0..1
-	var intensity := 1.0 - t                                         # 1..0 (damping)
+	var t := 1.0 - (_shake_timer.time_left / _shake_timer.wait_time)
+	var intensity := 1.0 - t                                       
 	var random_offset := Vector2(
 		randf_range(-MAX_OFFSET, MAX_OFFSET),
 		randf_range(-MAX_OFFSET, MAX_OFFSET)

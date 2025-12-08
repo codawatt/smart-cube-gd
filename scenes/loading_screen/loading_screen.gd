@@ -1,7 +1,6 @@
 class_name LoadingScreen
 extends CanvasLayer
 
-#region Properties
 const STALLED_ON_WEB = "\nIf running in a browser, try clicking out of the window, \nand then click back into the window. It might unstick.\nLastly, you may try refreshing the page.\n\n"
 
 enum StallStage{STARTED, WAITING, STILL_WAITING, GIVE_UP}
@@ -30,8 +29,7 @@ var _total_loading_progress : float = 0.0 :
 		_total_loading_progress = value
 		%ProgressBar.value = _total_loading_progress
 var _loading_start_time : int
-#endregion
-#region Implementation
+
 func update_total_loading_progress() -> void:
 	_total_loading_progress = _scene_loading_progress
 
@@ -167,4 +165,3 @@ func close() -> void:
 	set_process(false)
 	_hide_popups()
 	hide()
-#endregion

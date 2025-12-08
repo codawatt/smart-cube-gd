@@ -12,6 +12,7 @@ polygon = PackedVector2Array(-31, -31, 31, -31, 31, 31, -31, 31)
 
 [node name="Floor" type="StaticBody2D" groups=["Elements"]]
 script = ExtResource("1_kuqtn")
+selected_type = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true

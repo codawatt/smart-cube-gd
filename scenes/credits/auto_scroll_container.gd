@@ -35,14 +35,12 @@ func _scroll_container(amount : float) -> void:
 	_check_end_reached()
 
 func _on_gui_input(event : InputEvent) -> void:
-	# Captures the mouse scroll wheel input event
 	if event is InputEventMouseButton:
 		scroll_paused = true
 		_start_scroll_restart_timer()
 	_check_end_reached()
 
 func _on_scroll_started() -> void:
-	# Captures the touch input event
 	scroll_paused = true
 	_start_scroll_restart_timer()
 

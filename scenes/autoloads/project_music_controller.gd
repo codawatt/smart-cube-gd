@@ -1,17 +1,10 @@
 class_name MusicController
 extends Node
-## Controller for music playback across scenes.
-##
-## This node persistently checks for stream players added to the scene tree.
-## It detects stream players that match the audio bus and have autoplay on.
-## It then reparents the stream players to itself, and handles blending.
-## The expected use-case is to attach this script to an autoloaded scene.
 
 const BLEND_BUS_PREFIX : String = "Blend"
 const MAX_DEPTH = 16
 const MINIMUM_VOLUME_DB = -80
 
-## Detect stream players with matching audio bus.
 @export var audio_bus : StringName = &"Music"
 
 @export_group("Blending")
@@ -27,7 +20,6 @@ const MINIMUM_VOLUME_DB = -80
 		if fade_in_duration < 0:
 			fade_in_duration = 0
 
-## Matched stream players with no stream set will stop current playback.
 @export var empty_streams_stop_player : bool = true
 
 var music_stream_player : AudioStreamPlayer

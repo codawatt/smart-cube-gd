@@ -1,6 +1,5 @@
 class_name AppSettings
 extends Node
-#region Properties
 const INPUT_SECTION = &'InputSettings'
 const INPUT_GUI_SECTION = &'InputGuiSettings' #TODO
 const AUDIO_SECTION = &'AudioSettings'
@@ -18,8 +17,7 @@ const SYSTEM_BUS_NAME_PREFIX = "_"
 
 static var default_action_events : Dictionary
 static var initial_bus_volumes : Array
-#endregion
-#region Input
+
 static func get_config_input_events(action_name : String, default = null) -> Array:
 	return PlayerConfig.get_config(INPUT_SECTION, action_name, default)
 
@@ -80,8 +78,7 @@ static func set_inputs_from_config() -> void:
 	var action_list : Array[StringName] = _get_action_names()
 	for action_name in action_list:
 		set_input_from_config(action_name)
-#endregion
-#region Audio
+
 
 static func get_bus_volume(bus_index : int) -> float:
 	var initial_linear = 1.0
@@ -120,8 +117,7 @@ static func set_audio_from_config() -> void:
 	var mute_audio_flag : bool = is_muted()
 	mute_audio_flag = PlayerConfig.get_config(AUDIO_SECTION, MUTE_SETTING, mute_audio_flag)
 	set_mute(mute_audio_flag)
-#endregion
-#region Video
+
 
 static func set_fullscreen_enabled(value : bool, window : Window) -> void:
 	window.mode = Window.MODE_EXCLUSIVE_FULLSCREEN if (value) else Window.MODE_WINDOWED
@@ -175,8 +171,7 @@ static func set_video_from_config(window : Window) -> void:
 		var current_resolution : Vector2i = get_resolution(window)
 		set_resolution(current_resolution, window)
 	_set_v_sync_from_config(window)
-#endregion
-#region Top-level
+
 static func set_from_config() -> void:
 	set_default_inputs()
 	set_inputs_from_config()
@@ -185,4 +180,3 @@ static func set_from_config() -> void:
 static func set_from_config_and_window(window : Window) -> void:
 	set_from_config()
 	set_video_from_config(window)
-#endregion

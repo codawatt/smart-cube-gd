@@ -1,39 +1,22 @@
 class_name LevelManager
 extends Node
-## Manage level changes in games.
-##
-## A helper script to assign to a node in a scene.
-## It works with a level loader and can open menus when players win or lose.
-## It can either be assigned a starting level path or a scene lister.
-## It can detect signals from levels to change levels in an open-world.
-## With a scene lister, it will instead traverse through levels linearly.
 
-## Required reference to a level loader in the scene.
 @export var level_loader : LevelLoader
-## Optional path to a starting level scene.
-## Required if there is no scene lister.
-@export_file var starting_level_path : String
-## Optional reference to a scene lister in the scene.
-## Required if there is no starting level path.
+@export_file var starting_level_path_scene : String
+@export_file("*.tres")  var starting_level_path : String
 @export var scene_lister : SceneLister
-## Whether to load the starting level when ready.
 @export var auto_load : bool = true
 @export_group("Scenes")
-## Path to a main menu scene.
 @export_file("*.tscn") var main_menu_scene : String
-## Optional path to an ending scene.
 @export_file("*.tscn") var ending_scene : String
-## Optional screen to be shown after the game is won.
 @export var game_won_scene : PackedScene
-## Optional screen to be shown after the level is lost.
 @export var level_lost_scene : PackedScene
-## Optional screen to be shown after the level is won.
 @export var level_won_scene : PackedScene
+@export var level_banner_scene: PackedScene
 @export_group("Debugging")
-## Loads a level on start.
-@export_file("*.tscn") var force_level_path : String = ""
+@export_file("*.tscn") var force_level_path_scene : String = ""
+@export_file("*.tres") var force_level_path : String = ""
 
-## Reference to the current level node.
 var current_level : Node
 var current_level_path : String :
 	set = set_current_level_path
@@ -117,6 +100,15 @@ func get_current_level_path() -> String:
 			current_level_path = scene_lister.files.front()
 	return current_level_path if force_level_path.is_empty() else force_level_path
 
+signal level_number_available(number: int)
+signal level_completed(number: int)
+
+func get_current_level_number() -> int:
+	if scene_lister == null or current_level_path.is_empty():
+		return 1
+	var idx := scene_lister.files.find(current_level_path)
+	return idx + 1 if idx >= 0 else 1
+
 func load_current_level() -> void:
 	level_loader.load_level(get_current_level_path())
 
@@ -147,6 +139,8 @@ func _load_level_won_screen_or_next_level() -> void:
 	if level_won_scene:
 		var instance = level_won_scene.instantiate()
 		get_tree().current_scene.add_child(instance)
+		if instance.has_method("set_level_number"):
+			instance.set_level_number(get_current_level_number())
 		_try_connecting_signal_to_node(instance, &"continue_pressed", _load_next_level)
 		_try_connecting_signal_to_node(instance, &"restart_pressed", _advance_and_reload_level)
 		_try_connecting_signal_to_node(instance, &"main_menu_pressed", _advance_and_load_main_menu)
@@ -154,6 +148,7 @@ func _load_level_won_screen_or_next_level() -> void:
 		_load_next_level()
 
 func _on_level_won():
+	level_completed.emit(get_current_level_number())
 	if is_on_last_level():
 		var bmp = $"../BackgroundMusicPlayer"
 		bmp.stop()
@@ -181,6 +176,11 @@ func _on_level_loader_level_loaded() -> void:
 	current_level = level_loader.current_level
 	await current_level.ready
 	_connect_level_signals()
+	if level_banner_scene:
+		var banner := level_banner_scene.instantiate()
+		%ViewportContainer.add_child(banner)
+		if banner.has_method("show_banner"):
+			banner.show_banner(get_current_level_number())
 
 func _on_level_loader_level_load_started() -> void:
 	pass

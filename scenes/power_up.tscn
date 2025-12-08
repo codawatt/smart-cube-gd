@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://d4i7r5j1lpbmg"]
 
-[ext_resource type="Script" uid="uid://d1a1v2usug2sn" path="res://scenes/plus.gd" id="1_pnfie"]
+[ext_resource type="Script" uid="uid://d1a1v2usug2sn" path="res://scenes/power_up.gd" id="1_pnfie"]
 [ext_resource type="Texture2D" uid="uid://bpy1r5qos5ir2" path="res://assets/plus.png" id="2_uwx5p"]
-[ext_resource type="Script" uid="uid://3jttcwjhyl2v" path="res://scenes/oscillator.gd" id="3_uwx5p"]
+[ext_resource type="Script" uid="uid://vvykt8fkfs01" path="res://scenes/power_up_sprite.gd" id="3_uwx5p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_shke8"]
 size = Vector2(32, 32)
@@ -10,15 +10,18 @@ size = Vector2(32, 32)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_q7y4t"]
 polygon = PackedVector2Array(-4, -16, 4, -16, 4, -4, 16, -4, 16, 4, 4, 4, 4, 16, -4, 16, -4, 4, -16, 4, -16, -4, -4, -4)
 
-[node name="Plus" type="Area2D"]
+[node name="PowerUp" type="Area2D"]
+monitoring = false
 script = ExtResource("1_pnfie")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="PowerUpSprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 texture_filter = 1
 texture = ExtResource("2_uwx5p")
 script = ExtResource("3_uwx5p")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.25, 0.25)
 shape = SubResource("RectangleShape2D_shke8")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]

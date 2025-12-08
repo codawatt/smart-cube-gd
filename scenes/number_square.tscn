@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://ms1eck80yiwn"]
+[gd_scene load_steps=9 format=3 uid="uid://ms1eck80yiwn"]
 
 [ext_resource type="Script" uid="uid://dcqom7nm8w04k" path="res://scenes/number_square.gd" id="1_qmd2u"]
 [ext_resource type="Texture2D" uid="uid://bqn3jk73eivpp" path="res://assets/Square.png" id="1_rb13l"]
 [ext_resource type="Texture2D" uid="uid://drkewdjqv3p76" path="res://assets/Floor_margins.png" id="3_0thag"]
+[ext_resource type="Script" uid="uid://beq4lfho2oycs" path="res://scenes/number_state_machine.gd" id="4_7c503"]
+[ext_resource type="Script" uid="uid://ccf7ealrcddfr" path="res://scenes/number_normal_state.gd" id="5_rtjke"]
+[ext_resource type="Script" uid="uid://cy35f3g72dkd" path="res://scenes/number_locked_state.gd" id="6_gna2k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qmd2u"]
 size = Vector2(64, 64)
@@ -16,12 +19,12 @@ script = ExtResource("1_qmd2u")
 [node name="SquareSprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 texture_filter = 1
+scale = Vector2(0.98, 0.98)
 texture = ExtResource("1_rb13l")
 
 [node name="LockSprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-visible = false
-scale = Vector2(1.1, 1.1)
+texture_filter = 1
 texture = ExtResource("3_0thag")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -30,6 +33,7 @@ shape = SubResource("RectangleShape2D_qmd2u")
 
 [node name="NumberLabel" type="Label" parent="."]
 unique_name_in_owner = true
+texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -51,3 +55,15 @@ vertical_alignment = 1
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 visible = false
 occluder = SubResource("OccluderPolygon2D_qmd2u")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("4_7c503")
+start_state = NodePath("Normal")
+
+[node name="Normal" type="Node" parent="StateMachine"]
+unique_name_in_owner = true
+script = ExtResource("5_rtjke")
+
+[node name="Locked" type="Node" parent="StateMachine"]
+unique_name_in_owner = true
+script = ExtResource("6_gna2k")

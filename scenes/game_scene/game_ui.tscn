@@ -1,15 +1,18 @@
-[gd_scene load_steps=11 format=3 uid="uid://m0t8xxxansxp"]
+[gd_scene load_steps=14 format=3 uid="uid://m0t8xxxansxp"]
 
 [ext_resource type="Script" uid="uid://c26ehqwu38wrq" path="res://scripts/pause_menu_controller.gd" id="1_6mwjj"]
 [ext_resource type="Script" uid="uid://dhh1l8jcnejss" path="res://scripts/level_loader.gd" id="2_dnslt"]
 [ext_resource type="PackedScene" uid="uid://cllwf1ppx8k8x" path="res://scenes/loading_screen/loading_screen.tscn" id="2_seekm"]
 [ext_resource type="PackedScene" uid="uid://1ubkiehrce86" path="res://scenes/overlaid_menu/pause_menu.tscn" id="2_ul61k"]
-[ext_resource type="Script" uid="uid://c54hscgx85rnt" path="res://scripts/scene_lister.gd" id="3_ejf1p"]
 [ext_resource type="Script" uid="uid://bnaj18x8cdwmm" path="res://scripts/level_manager.gd" id="3_v20na"]
+[ext_resource type="PackedScene" uid="uid://cjunca07j0ceg" path="res://scenes/levels/level.tscn" id="4_onvsj"]
 [ext_resource type="PackedScene" uid="uid://ccar650omge8a" path="res://scenes/overlaid_menu/game_won_menu.tscn" id="5_onvsj"]
 [ext_resource type="PackedScene" uid="uid://qdh828m3mwpa" path="res://scenes/overlaid_menu/level_won_menu.tscn" id="6_bqcs8"]
 [ext_resource type="PackedScene" uid="uid://b3rxrtqwq7dwb" path="res://scenes/overlaid_menu/level_lost_menu.tscn" id="6_onvsj"]
 [ext_resource type="Script" uid="uid://pr6vr8yd15ha" path="res://scenes/game_scene/configurable_sub_viewport.gd" id="6_y85d6"]
+[ext_resource type="PackedScene" uid="uid://hshd2omypbo0" path="res://scenes/level_banner.tscn" id="9_7aihr"]
+[ext_resource type="Script" uid="uid://c54hscgx85rnt" path="res://scripts/scene_lister.gd" id="9_bmy5n"]
+[ext_resource type="PackedScene" uid="uid://dl73irwrbe81p" path="res://scenes/mobile_ui.tscn" id="15_ascoc"]
 
 [node name="GameUI" type="Control"]
 layout_mode = 3
@@ -19,10 +22,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PauseMenuController" type="Node" parent="." node_paths=PackedStringArray("focused_viewport")]
+[node name="PauseMenuController" type="Node" parent="." node_paths=PackedStringArray("focused_viewport", "mob_ui")]
 script = ExtResource("1_6mwjj")
 pause_menu_packed = ExtResource("2_ul61k")
 focused_viewport = NodePath("../ViewportContainer/ConfigurableSubViewport")
+mob_ui = NodePath("../MobileUI")
 
 [node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3
@@ -32,27 +36,29 @@ bus = &"Music"
 script = ExtResource("2_dnslt")
 level_container = NodePath("../ViewportContainer/ConfigurableSubViewport")
 level_loading_screen = NodePath("../LoadingScreen")
+level_scene = ExtResource("4_onvsj")
 
 [node name="LevelManager" type="Node" parent="." node_paths=PackedStringArray("level_loader", "scene_lister")]
 script = ExtResource("3_v20na")
 level_loader = NodePath("../LevelLoader")
-starting_level_path = "uid://dtxt502bqvmbi"
 scene_lister = NodePath("SceneLister")
 main_menu_scene = "uid://ce2loafdjavqa"
 ending_scene = "uid://dnr7xvawatedw"
 game_won_scene = ExtResource("5_onvsj")
 level_lost_scene = ExtResource("6_onvsj")
 level_won_scene = ExtResource("6_bqcs8")
+level_banner_scene = ExtResource("9_7aihr")
 
 [node name="SceneLister" type="Node" parent="LevelManager"]
-script = ExtResource("3_ejf1p")
-files = Array[String](["res://scenes/levels/level_1.tscn"])
-directory = "res://scenes/levels"
+script = ExtResource("9_bmy5n")
+files = Array[String](["res://resources/levels/level_1.tres", "res://resources/levels/level_2.tres", "res://resources/levels/level_3.tres", "res://resources/levels/level_4.tres", "res://resources/levels/level_5.tres", "res://resources/levels/level_6.tres", "res://resources/levels/level_7.tres", "res://resources/levels/level_8.tres", "res://resources/levels/level_9.tres", "res://resources/levels/level_10.tres", "res://resources/levels/level_11.tres", "res://resources/levels/level_12.tres", "res://resources/levels/level_13.tres", "res://resources/levels/level_14.tres", "res://resources/levels/level_15.tres", "res://resources/levels/level_16.tres", "res://resources/levels/level_17.tres", "res://resources/levels/level_18.tres", "res://resources/levels/level_19.tres", "res://resources/levels/level_20.tres", "res://resources/levels/level_21.tres", "res://resources/levels/level_22.tres", "res://resources/levels/level_23.tres", "res://resources/levels/level_24.tres", "res://resources/levels/level_25.tres", "res://resources/levels/level_26.tres", "res://resources/levels/level_27.tres", "res://resources/levels/level_28.tres", "res://resources/levels/level_29.tres", "res://resources/levels/level_30.tres", "res://resources/levels/level_31.tres", "res://resources/levels/level_32.tres", "res://resources/levels/level_33.tres", "res://resources/levels/level_34.tres", "res://resources/levels/level_35.tres"])
+directory_scenes = "res://resources/levels"
 
 [node name="LoadingScreen" parent="." instance=ExtResource("2_seekm")]
 visible = false
 
 [node name="ViewportContainer" type="SubViewportContainer" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -63,8 +69,12 @@ stretch = true
 
 [node name="ConfigurableSubViewport" type="SubViewport" parent="ViewportContainer"]
 handle_input_locally = false
+canvas_item_default_texture_filter = 0
 audio_listener_enable_2d = true
 audio_listener_enable_3d = true
-size = Vector2i(1280, 720)
+size = Vector2i(1024, 576)
 render_target_update_mode = 4
 script = ExtResource("6_y85d6")
+
+[node name="MobileUI" parent="." instance=ExtResource("15_ascoc")]
+layout_mode = 1

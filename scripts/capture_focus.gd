@@ -1,13 +1,5 @@
 extends Control
-## Node that captures UI focus for games with a hidden mouse or joypad enabled.
-##
-## This script assists with capturing UI focus when
-## opening, closing, or switching between menus.
-## When attached to a node, it will check if it was changed to visible
-## and if it should grab focus. If both are true, it will capture focus
-## on the first eligible node in its scene tree.
 
-## Hierarchical depth to search in the scene tree.
 @export var search_depth : int = 1
 @export var enabled : bool = false
 @export var null_focus_enabled : bool = true
@@ -15,7 +7,6 @@ extends Control
 @export var mouse_hidden_enabled : bool = true
 @export var home_end_enabled : bool = false
 
-## Locks focus
 @export var lock : bool = false :
 	set(value):
 		var value_changed : bool = lock != value
@@ -105,16 +96,21 @@ func _collect_focusables(node: Node, out: Array) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if !home_end_enabled or !(_ref is BoxContainer):
 		return
+
+	# Rebuild targets whenever we try to use Home/End
+	if event.is_action_pressed("ui_home") or event.is_action_pressed("ui_end"):
+		_refresh_home_end_targets()
+
 	if event.is_action_pressed("ui_home") and _home_target:
 		_home_target.grab_focus()
 		if _home_target is ItemList:
 			_home_target.select(0)
 		get_viewport().set_input_as_handled()
+
 	if event.is_action_pressed("ui_end") and _end_target:
 		_end_target.grab_focus()
 		if _end_target is ItemList:
-			var count :int= _end_target.item_count if _end_target.has_method("get_item_count") else _end_target.get_item_count()
+			var count : int = _end_target.get_item_count() if _end_target.has_method("get_item_count") else _end_target.item_count
 			if count > 0:
-				_end_target.select(count-1)
-			get_viewport().set_input_as_handled()
-			
+				_end_target.select(count - 1)
+		get_viewport().set_input_as_handled()

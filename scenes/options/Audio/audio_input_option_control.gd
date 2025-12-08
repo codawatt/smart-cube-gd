@@ -2,18 +2,14 @@
 class_name ListOptionControl
 extends OptionControl
 
-## Locks Option Titles from auto-updating when editing Option Values.
-## Intentionally put first for initialization.
+
 @export var lock_titles : bool = false
-## Defines the list of possible values for the variable
-## this option stores in the config file.
+
 @export var option_values : Array :
 	set(value) :
 		option_values = value
 		_on_option_values_changed()
 
-## Defines the list of options displayed to the user.
-## Length should match with Option Values.
 @export var option_titles : Array[String] :
 	set(value):
 		option_titles = value

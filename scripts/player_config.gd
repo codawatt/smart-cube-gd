@@ -1,15 +1,10 @@
 class_name PlayerConfig
 extends Object
 
-#region Properties
 const CONFIG_FILE_LOCATION := "user://player_config.cfg"
 
 static var config_file : ConfigFile
-#endregion
-#ALERT this is weird and fucked up shit man wizard gang
-#static func _init() -> void:
-	#load_config_file() 
-#region Implementation
+
 static func _save_config_file() -> void:
 	var save_error : int = config_file.save(CONFIG_FILE_LOCATION)
 	if save_error:
@@ -57,4 +52,3 @@ static func get_section_keys(section: String) -> PackedStringArray:
 	if config_file.has_section(section):
 		return config_file.get_section_keys(section)
 	return PackedStringArray()
-#endregion

@@ -5,8 +5,10 @@ signal level_lost
 signal level_won
 signal level_won_and_changed(level_path : String)
 
-@export_file("*.tscn") var next_level_path : String
-
+@export_file("*.tscn") var next_level_path_scene : String
+@export_file("*.tres") var next_level_path : String
+@export_file("*.tres") var level_path : String = ""  # injected by LevelLoader; identifies the current LevelData
+ 
 var level_state : LevelState
 
 func _on_lose_button_pressed() -> void:
@@ -24,7 +26,9 @@ func open_tutorials() -> void:
 	GlobalState.save()
 
 func _ready() -> void:
-	level_state = GameState.get_level_state(scene_file_path)
+	# Prefer the LevelData path as the state key (same scene reused for many data files).
+	var state_key := level_path if not level_path.is_empty() else scene_file_path
+	level_state = GameState.get_level_state(state_key)
 	#%ColorPickerButton.color = level_state.color
 	#%BackgroundColor.color = level_state.color
 	if not level_state.tutorial_read:

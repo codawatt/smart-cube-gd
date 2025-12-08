@@ -4,7 +4,9 @@
 [ext_resource type="Script" uid="uid://b6ae56mtv4wqi" path="res://scenes/overlaid_menu/level_won_menu.gd" id="2_isgtt"]
 
 [node name="LevelWonMenu" instance=ExtResource("1_okwks")]
+process_mode = 3
 script = ExtResource("2_isgtt")
+pauses_game = true
 
 [node name="MenuPanelContainer" parent="." index="1"]
 custom_minimum_size = Vector2(432, 240)

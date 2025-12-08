@@ -24,10 +24,8 @@ const OptionSectionNames : Dictionary = {
 	OptionSections.CUSTOM : AppSettings.CUSTOM_SECTION,
 }
 
-## Locks config names in case of issues with inherited scenes.
-## Intentionally put first for initialization.
+
 @export var lock_config_names : bool = false
-## Defines text displayed to the user.
 @export var option_name : String :
 	set(value):
 		var _update_config : bool = option_name.to_pascal_case() == key and not lock_config_names
@@ -36,7 +34,6 @@ const OptionSectionNames : Dictionary = {
 			$OptionLabel.text = "%s%s" % [option_name, label_suffix]
 		if _update_config:
 			key = option_name.to_pascal_case()
-## Defines what section in the config file this option belongs under.
 @export var option_section : OptionSections :
 	set(value):
 		var _update_config : bool = OptionSectionNames[option_section] == section and not lock_config_names
@@ -45,20 +42,15 @@ const OptionSectionNames : Dictionary = {
 			section = OptionSectionNames[option_section]
 
 @export_group("Config Names")
-## Defines the key for this option variable in the config file.
 @export var key : String
-## Defines the section for this option variable in the config file.
 @export var section : String
 @export_group("Format")
 @export var label_suffix : String = " :"
 @export_group("Properties")
-## Defines whether the option is editable, or only visible by the user.
 @export var editable : bool = true : set = set_editable
-## Defines what kind of variable this option stores in the config file.
 @export var property_type : Variant.Type = TYPE_BOOL
 
-## It is advised to use an external editor to set the default value in the scene file.
-## Godot can experience a bug (caching issue?) that may undo changes.
+
 var default_value
 var _connected_nodes : Array
 

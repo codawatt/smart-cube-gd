@@ -2,8 +2,7 @@ class_name ScrollingCredits
 extends Credits
 
 @export_file("*.tscn") var main_menu_scene : String
-## This option forces the mouse to be visible when the menu shows up.
-## Useful for games that capture the mouse, and don't automatically return it.
+
 @export var force_mouse_mode_visible : bool = false
 @onready var init_mouse_filter : MouseFilter = mouse_filter
 @onready var header_space : Control = %HeaderSpace
