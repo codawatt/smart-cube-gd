@@ -1,0 +1,207 @@
+[gd_scene load_steps=20 format=4 uid="uid://8efyxwu4wrf"]
+
+[ext_resource type="Texture2D" uid="uid://dox5roph2nto7" path="res://assets/Floor.png" id="1_dglui"]
+[ext_resource type="Script" uid="uid://bnch8x5h0pnei" path="res://scenes/level_creator/level_editor_texture.gd" id="2_cu5gy"]
+[ext_resource type="Texture2D" uid="uid://cvx888d6p0u5s" path="res://assets/coin.png" id="2_gfo0s"]
+[ext_resource type="Texture2D" uid="uid://baw1be26ocmiq" path="res://assets/Floor White.png" id="3_26jr4"]
+[ext_resource type="Texture2D" uid="uid://ybxou512yoxl" path="res://assets/minus.png" id="4_bj604"]
+[ext_resource type="Texture2D" uid="uid://cdk256dv7cifj" path="res://assets/Platform.png" id="5_qi6st"]
+[ext_resource type="Texture2D" uid="uid://c7lb3t5qbcwad" path="res://assets/PlayerRed.png" id="6_8tgte"]
+[ext_resource type="Texture2D" uid="uid://bpy1r5qos5ir2" path="res://assets/plus.png" id="7_lahb0"]
+[ext_resource type="Texture2D" uid="uid://bqn3jk73eivpp" path="res://assets/Square.png" id="8_1fpgm"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cu5gy"]
+texture = ExtResource("1_dglui")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ldq3i"]
+texture = ExtResource("2_gfo0s")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7fsov"]
+texture = ExtResource("3_26jr4")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wy4pi"]
+texture = ExtResource("4_bj604")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cys6q"]
+texture = ExtResource("5_qi6st")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b3btk"]
+texture = ExtResource("6_8tgte")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ldcsh"]
+texture = ExtResource("7_lahb0")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nf55l"]
+texture = ExtResource("8_1fpgm")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_sanbi"]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_cu5gy")
+sources/1 = SubResource("TileSetAtlasSource_ldq3i")
+sources/2 = SubResource("TileSetAtlasSource_7fsov")
+sources/3 = SubResource("TileSetAtlasSource_wy4pi")
+sources/4 = SubResource("TileSetAtlasSource_cys6q")
+sources/5 = SubResource("TileSetAtlasSource_b3btk")
+sources/6 = SubResource("TileSetAtlasSource_ldcsh")
+sources/7 = SubResource("TileSetAtlasSource_nf55l")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_dglui"]
+viewport_path = NodePath("SubViewport")
+
+[node name="LevelCreator" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+handle_input_locally = false
+size = Vector2i(1024, 576)
+render_target_update_mode = 4
+
+[node name="ColorRect" type="ColorRect" parent="SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -128.0
+offset_right = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.46200004, 0.55, 0.46493334, 1)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="SubViewport"]
+tile_map_data = PackedByteArray("AAD//wEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAgAAAAAAAAAAAABAAgAAAAAAAAAAAACAAgAAAAAAAAAAAAEAAgAAAAAAAAAAAADAAgAAAAAAAAAAAAFAAgAAAAAAAAAAAAGAAgAAAAAAAAAAAAHAAgAAAAAAAAAAAAIAAgAAAAAAAAAAAAJAAgAAAAAAAAAAAAKAAgAAAAAAAAAAAALAAgAAAAAAAAAAAAMAAgAAAAAAAAAAAANAAgAAAAAAAAAAAAOAAgAAAAAAAAAAAAPAAgAAAAAAAAAAAABAAMAAAAAAAAAAAACAAQAAAAAAAAAAAACAAMAAAAAAAAAAAAHAAUAAAAAAAAAAAAPAAYAAAAAAAAAAAAPAAQAAAAAAAAAAAAJAAQABQAAAAAAAAAHAAQABQAAAAAAAAAGAAQABQAAAAAAAAAFAAQABgAAAAAAAAAKAAQABgAAAAAAAAA=")
+tile_set = SubResource("TileSet_sanbi")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleContainer" type="MarginContainer" parent="MenuContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 24
+
+[node name="Control" type="Control" parent="MenuContainer/TitleContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MenuContainer/TitleContainer/Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 18.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
+text = "Level Creator"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LevelNameContainer" type="MarginContainer" parent="MenuContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 70
+
+[node name="Control" type="Control" parent="MenuContainer/LevelNameContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuContainer/LevelNameContainer/Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 24.0
+grow_horizontal = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="MenuContainer/LevelNameContainer/Control/HBoxContainer"]
+layout_mode = 2
+text = "Name:"
+
+[node name="TextEdit" type="TextEdit" parent="MenuContainer/LevelNameContainer/Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+placeholder_text = "Level name..."
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 110
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 100
+
+[node name="LevelEditorTexture" type="TextureRect" parent="MenuContainer/MarginContainer" node_paths=PackedStringArray("map_layer", "map_viewport")]
+layout_mode = 2
+texture = SubResource("ViewportTexture_dglui")
+expand_mode = 1
+script = ExtResource("2_cu5gy")
+map_layer = NodePath("../../../SubViewport/TileMapLayer")
+map_viewport = NodePath("../../../SubViewport")
+
+[node name="ButtonContainer" type="MarginContainer" parent="MenuContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 500
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 10
+
+[node name="Control" type="Control" parent="MenuContainer/ButtonContainer"]
+layout_mode = 2
+
+[node name="ButtonHBoxContainer" type="HBoxContainer" parent="MenuContainer/ButtonContainer/Control"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = 8
+alignment = 2
+
+[node name="ClearButton" type="Button" parent="MenuContainer/ButtonContainer/Control/ButtonHBoxContainer"]
+layout_mode = 2
+text = "Clear"
+
+[node name="SaveButton" type="Button" parent="MenuContainer/ButtonContainer/Control/ButtonHBoxContainer"]
+layout_mode = 2
+text = "Save"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MenuContainer/ButtonContainer/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

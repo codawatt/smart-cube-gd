@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5yd5jvwc0yra"]
+
+[ext_resource type="Script" uid="uid://c641qwo4d1vjl" path="res://scenes/level_select/custom_levels.gd" id="1_dbtam"]
+[ext_resource type="Script" uid="uid://bryrwd5fwo16x" path="res://scripts/capture_focus.gd" id="1_gxrx5"]
+[ext_resource type="Script" uid="uid://c54hscgx85rnt" path="res://scripts/scene_lister.gd" id="2_dbtam"]
+
+[node name="CustomLevels" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dbtam")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gxrx5")
+
+[node name="LevelsButtonsContainer" type="ItemList" parent="Control"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = -20.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+auto_height = true
+item_count = 1
+item_0/text = "1 - SAMPLE TEXT"
+
+[node name="SceneLister" type="Node" parent="."]
+script = ExtResource("2_dbtam")

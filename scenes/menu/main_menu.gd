@@ -10,6 +10,8 @@ signal game_exited
 @export var options_packed_scene : PackedScene
 @export var credits_packed_scene : PackedScene
 @export var level_select_packed_scene: PackedScene
+@export var level_creator_packed_scene: PackedScene
+@export var custom_levels_packed_scene: PackedScene
 @export_group("Extra Settings")
 @export var signal_game_start : bool = false
 @export var signal_game_exit : bool = false
